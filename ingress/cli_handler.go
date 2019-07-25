@@ -1,3 +1,18 @@
+// NetD makes network device operations easy.
+// Copyright (C) 2019  sky-cloud.net
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
 package ingress
 
 import (
@@ -62,14 +77,14 @@ func doHandle(req *protocol.CliRequest, res *protocol.CliResponse) error {
 	defer conn.Release(req)
 	if err != nil {
 		logs.Error(req.LogPrefix, "new operator fail,", err)
-		*res = makeCliErrRes(common.ErrNewOp, "new operator fail, "+err.Error())
+		*res = makeCliErrRes(common.ErrAcquireConn, "acquire cli conn fail, "+err.Error())
 		return nil
 	}
 	// execute cli commands
 	out, err := c.Exec()
 	if err != nil {
 		logs.Error(req.LogPrefix, "exec error,", err)
-		*res = makeCliErrRes(common.ErrOpExec, "exec cli cmds fail, "+err.Error())
+		*res = makeCliErrRes(common.ErrCliExec, "exec cli cmds fail, "+err.Error())
 		return nil
 	}
 	// make reponse
