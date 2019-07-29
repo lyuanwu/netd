@@ -23,7 +23,7 @@ go build .
 		Commands: []string{"set security address-book global address WS-100.2.2.46_32 wildcard-address 100.2.2.46/32"},
 		Protocol: "ssh",
 		Mode:     "configure_private",
-		Timeout:  30,
+		Timeout:  30, // seconds
 	}
 	var reply protocol.CliResponse
 	c := jsonrpc.NewClient(client)
@@ -41,3 +41,15 @@ check [jrpc test](https://github.com/sky-cloud-tec/netd/blob/master/ingress/jrpc
 
 * cisco
 
+#### device support list
+* juniper
+    * srx
+    * ssg
+* cisco
+    * asa
+    * ios switch
+    * nx-os switch
+
+* fortinet
+    * fortigate
+* paloalto
