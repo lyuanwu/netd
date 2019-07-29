@@ -2,6 +2,7 @@
 
 #### how to run
 ```
+go get -t ./...
 go build .
 ./netd  --loglevel DEBUG jrpc
 ```
