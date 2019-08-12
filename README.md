@@ -1,5 +1,7 @@
 ## NetD
 
+[![Build Status](https://travis-ci.org/sky-cloud-tec/netd.svg?branch=master)](https://travis-ci.org/sky-cloud-tec/netd)
+
 #### how to run
 ```
 go get -t ./...
