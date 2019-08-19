@@ -109,7 +109,7 @@ func newCliConn(req *protocol.CliRequest, op cli.Operator) (*CliConn, error) {
 			logs.Error(req.LogPrefix, "dial", req.Address, "error", err)
 			return nil, fmt.Errorf("%s dial %s error, %s", req.LogPrefix, req.Address, err)
 		}
-		c := &CliConn{t: common.SSHConn, client: client, req: req, op: op, mode: "login"}
+		c := &CliConn{t: common.SSHConn, client: client, req: req, op: op, mode: op.GetStartMode()}
 		if err := c.init(); err != nil {
 			c.Close()
 			return nil, err
@@ -120,7 +120,7 @@ func newCliConn(req *protocol.CliRequest, op cli.Operator) (*CliConn, error) {
 		if err != nil {
 			return nil, fmt.Errorf("[ %s ] dial %s error, %s", req.Device, req.Address, err)
 		}
-		c := &CliConn{t: common.TELNETConn, conn: conn, req: req, op: op, mode: "login"}
+		c := &CliConn{t: common.TELNETConn, conn: conn, req: req, op: op, mode: op.GetStartMode()}
 		return c, nil
 	}
 	return nil, fmt.Errorf("protocol %s not support", req.Protocol)
@@ -164,8 +164,47 @@ func (s *CliConn) init() error {
 		}
 
 		// read login prompt
-		if _, _, err := s.readBuff(); err != nil {
+		_, prompt, err := s.readBuff()
+		if err != nil {
 			return fmt.Errorf("read after login failed, %s", err)
+		}
+		// enable cases
+		if s.mode == "login_or_login_enable" {
+			// check prompt
+			loginPrompts := s.op.GetPrompts("login")
+			if cli.Match(loginPrompts, prompt) {
+				s.mode = "login"
+				if s.mode != s.req.Mode {
+					// login is not the target mode, need transition
+					// enter privileged mode
+					if _, err := s.writeBuff("enable" + s.op.GetLinebreak() + s.req.EnablePwd); err != nil {
+						return fmt.Errorf("enter privileged mode err, %s", err)
+					}
+					s.mode = "login_enable"
+					if _, _, err := s.readBuff(); err != nil {
+						s.mode = "login"
+						return fmt.Errorf("readBuff after enable err, %s", err)
+					}
+					if s.req.Vendor == "cisco" && s.req.Type == "asa" {
+						// ===config or normal both ok===
+						// set terminal pager
+						if _, err := s.writeBuff("terminal pager 0"); err != nil {
+							return err
+						}
+						if _, _, err := s.readBuff(); err != nil {
+							return err
+						}
+						// set page lines
+						if _, err := s.writeBuff("terminal pager lines 0"); err != nil {
+							return err
+						}
+						if _, _, err := s.readBuff(); err != nil {
+							return err
+						}
+						// ==============================
+					}
+				}
+			}
 		}
 	}
 	s.heartbeat()
@@ -220,7 +259,10 @@ func (s *CliConn) findLastLine(t string) string {
 	scanner := bufio.NewScanner(strings.NewReader(t))
 	var last string
 	for scanner.Scan() {
-		last = scanner.Text()
+		s := scanner.Text()
+		if len(s) > 0 {
+			last = s
+		}
 	}
 	return last
 }
@@ -229,7 +271,6 @@ func (s *CliConn) findLastLine(t string) string {
 func (s *CliConn) anyPatternMatches(t string, patterns []*regexp.Regexp) []string {
 	for _, v := range patterns {
 		matches := v.FindStringSubmatch(t)
-		logs.Debug(v, t, matches)
 		if len(matches) != 0 {
 			return matches
 		}
@@ -253,7 +294,6 @@ func (s *CliConn) readLines() *readBuffOut {
 		current := string(buf[:n])
 		logs.Debug(s.req.LogPrefix, "(", n, ")", current)
 		lastLine = s.findLastLine(waitingString + current)
-		logs.Debug("lastline:", lastLine, ":")
 		matches := s.anyPatternMatches(lastLine, s.op.GetPrompts(s.mode))
 		if len(matches) > 0 {
 			logs.Info(s.req.LogPrefix, "[prompt matched]", matches)

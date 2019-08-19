@@ -13,7 +13,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-package srx
+package asa
 
 import (
 	"fmt"
@@ -25,59 +25,48 @@ import (
 )
 
 func init() {
-	// register srx 6.x
-	cli.OperatorManagerInstance.Register(`(?i)juniper\.srx\.6\.[0-9]{1,}`, newSixZeroOperator())
+	// register asa 9.x+
+	cli.OperatorManagerInstance.Register(`(?i)cisco\.asa\.(9|[0-9]{1,})\..*`, createOp9xPlus())
 }
 
-type sixZeroOperator struct {
+type op9xPlus struct {
 	lineBeak    string // \r\n \n
 	transitions map[string][]string
 	prompts     map[string][]*regexp.Regexp
 	errs        []*regexp.Regexp
 }
 
-func newSixZeroOperator() cli.Operator {
-	sixZeroLoginPrompt := regexp.MustCompile("^[[:alnum:]_]{1,}[.]{0,1}[[:alnum:]_-]{0,}@[[:alnum:]._-]+> $")
-	sixZeroConfigPrompt := regexp.MustCompile("^[[:alnum:]_]{1,}[.]{0,1}[[:alnum:]_-]{0,}@[[:alnum:]._-]+# $")
-	return &sixZeroOperator{
+func createOp9xPlus() cli.Operator {
+	loginPrompt := regexp.MustCompile("[[:alnum:]]{1,}(-[[:alnum:]]+){0,}> $")
+	loginEnablePrompt := regexp.MustCompile("[[:alnum:]]{1,}(-[[:alnum:]]+){0,}# $")
+	configTerminalPrompt := regexp.MustCompile(`[[:alnum:]]{1,}(-[[:alnum:]]+){0,}\(config\)# $`)
+	return &op9xPlus{
 		// mode transition
-		// login -> configure_private
-		// login -> configure_exclusive
-		// login -> configure
+		// login_enable -> configure_terminal
 		transitions: map[string][]string{
-			"login->configure_private":   {"configure private"},
-			"configure_private->login":   {"exit"},
-			"login->configure_exclusive": {"configure exclusive"},
-			"configure_exclusive->login": {"exit"},
-			"login->configure":           {"configure"},
-			"configure->login":           {"exit"},
+			"login_enable->configure_terminal": {"configure terminal"},
+			"configure_terminal->login_enable": {"exit"},
 		},
 		prompts: map[string][]*regexp.Regexp{
-			"login":               {sixZeroLoginPrompt},
-			"configure":           {sixZeroConfigPrompt},
-			"configure_private":   {sixZeroConfigPrompt},
-			"configure_exclusive": {sixZeroConfigPrompt},
+			"login_or_login_enable": {loginPrompt, loginEnablePrompt},
+			"login":                 {loginPrompt},
+			"login_enable":          {loginEnablePrompt},
+			"configure_terminal":    {configTerminalPrompt},
 		},
 		errs: []*regexp.Regexp{
-			regexp.MustCompile("^syntax error\\.$"),
-			regexp.MustCompile("^unknown command\\.$"),
-			regexp.MustCompile("^missing argument\\.$"),
-			regexp.MustCompile("\\^$"),
-			regexp.MustCompile("^error:"),
+			regexp.MustCompile("^ERROR: "),
 		},
 		lineBeak: "\n",
 	}
 }
 
-func (s *sixZeroOperator) GetPrompts(k string) []*regexp.Regexp {
+func (s *op9xPlus) GetPrompts(k string) []*regexp.Regexp {
 	if v, ok := s.prompts[k]; ok {
 		return v
 	}
-	// return empty slice
-	// return make([]*regexp.Regexp, 0)
 	return nil
 }
-func (s *sixZeroOperator) GetTransitions(c, t string) []string {
+func (s *op9xPlus) GetTransitions(c, t string) []string {
 	k := c + "->" + t
 	if v, ok := s.transitions[k]; ok {
 		return v
@@ -85,15 +74,19 @@ func (s *sixZeroOperator) GetTransitions(c, t string) []string {
 	return nil
 }
 
-func (s *sixZeroOperator) GetErrPatterns() []*regexp.Regexp {
+func (s *op9xPlus) GetErrPatterns() []*regexp.Regexp {
 	return s.errs
 }
 
-func (s *sixZeroOperator) GetLinebreak() string {
+func (s *op9xPlus) GetLinebreak() string {
 	return s.lineBeak
 }
 
-func (s *sixZeroOperator) GetSSHInitializer() cli.SSHInitializer {
+func (s *op9xPlus) GetStartMode() string {
+	return "login_or_login_enable"
+}
+
+func (s *op9xPlus) GetSSHInitializer() cli.SSHInitializer {
 	return func(c *ssh.Client) (io.Reader, io.WriteCloser, *ssh.Session, error) {
 		var err error
 		session, err := c.NewSession()

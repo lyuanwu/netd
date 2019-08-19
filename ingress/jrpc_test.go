@@ -16,6 +16,7 @@
 package ingress
 
 import (
+	"fmt"
 	"net"
 	"net/rpc/jsonrpc"
 	"testing"
@@ -36,7 +37,7 @@ func TestJuniperSrx_Set(t *testing.T) {
 		)
 		// Synchronous call
 		args := &protocol.CliRequest{
-			Device:  "juniper-test",
+			Device:  "juniper-srx-set-test",
 			Vendor:  "juniper",
 			Type:    "srx",
 			Version: "6.0",
@@ -45,7 +46,7 @@ func TestJuniperSrx_Set(t *testing.T) {
 				Username: "admin",
 				Password: "r00tme",
 			},
-			Commands: []string{"set security address-book global address WS-100.2.2.46_32 wildcard-address 100.2.2.46/32"},
+			Commands: []string{"set security address-book global address WS-100.2.2.46_32 wildcard-address 100.2.2.46/32", "commit"},
 			Protocol: "ssh",
 			Mode:     "configure_private",
 			Timeout:  30,
@@ -61,6 +62,10 @@ func TestJuniperSrx_Set(t *testing.T) {
 			reply.Retcode == common.OK,
 			ShouldBeTrue,
 		)
+		So(
+			len(reply.CmdsStd) == 2,
+			ShouldBeTrue,
+		)
 	})
 }
 
@@ -74,7 +79,7 @@ func TestJuniperSrx_Show(t *testing.T) {
 		)
 		// Synchronous call
 		args := &protocol.CliRequest{
-			Device:  "juniper-test-show",
+			Device:  "juniper-srx-show-test",
 			Vendor:  "juniper",
 			Type:    "srx",
 			Version: "6.0",
@@ -105,6 +110,99 @@ func TestJuniperSrx_Show(t *testing.T) {
 		)
 		So(
 			len(reply.CmdsStd) == 1,
+			ShouldBeTrue,
+		)
+	})
+}
+
+func TestCiscoAsa_Show(t *testing.T) {
+
+	Convey("show cisco asa configuration", t, func() {
+		client, err := net.Dial("tcp", "localhost:8088")
+		So(
+			err,
+			ShouldBeNil,
+		)
+		// Synchronous call
+		args := &protocol.CliRequest{
+			Device:  "cisco-asa-show-test",
+			Vendor:  "cisco",
+			Type:    "asa",
+			Version: "9.6(x)",
+			Address: "192.168.1.238:22",
+			Auth: protocol.Auth{
+				Username: "admin",
+				Password: "r00tme",
+			},
+			Commands: []string{"show running-config"},
+			Protocol: "ssh",
+			Mode:     "login_enable",
+			Timeout:  30,
+		}
+		var reply protocol.CliResponse
+		c := jsonrpc.NewClient(client)
+		err = c.Call("CliHandler.Handle", args, &reply)
+		So(
+			err,
+			ShouldBeNil,
+		)
+		So(
+			reply.Retcode == common.OK,
+			ShouldBeTrue,
+		)
+		So(
+			reply.CmdsStd,
+			ShouldNotBeNil,
+		)
+		So(
+			len(reply.CmdsStd) == 1,
+			ShouldBeTrue,
+		)
+	})
+}
+
+func TestCiscoAsa_Set(t *testing.T) {
+
+	Convey("set cisco asa configuration", t, func() {
+		client, err := net.Dial("tcp", "localhost:8088")
+		So(
+			err,
+			ShouldBeNil,
+		)
+		// Synchronous call
+		args := &protocol.CliRequest{
+			Device:  "cisco-asa-set-test",
+			Vendor:  "cisco",
+			Type:    "asa",
+			Version: "9.6(x)",
+			Address: "192.168.1.238:22",
+			Auth: protocol.Auth{
+				Username: "admin",
+				Password: "r00tme",
+			},
+			Commands: []string{"object network cisco-asa-set-test\n  host 1.1.1.1\nexit", "no object network cisco-asa-set-test"},
+			Protocol: "ssh",
+			Mode:     "configure_terminal",
+			Timeout:  30,
+		}
+		var reply protocol.CliResponse
+		c := jsonrpc.NewClient(client)
+		err = c.Call("CliHandler.Handle", args, &reply)
+		So(
+			err,
+			ShouldBeNil,
+		)
+		So(
+			reply.Retcode == common.OK,
+			ShouldBeTrue,
+		)
+		So(
+			reply.CmdsStd,
+			ShouldNotBeNil,
+		)
+		fmt.Println(reply)
+		So(
+			len(reply.CmdsStd) == 2,
 			ShouldBeTrue,
 		)
 	})

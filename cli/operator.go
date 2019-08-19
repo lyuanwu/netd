@@ -31,6 +31,7 @@ type Operator interface {
 	GetErrPatterns() []*regexp.Regexp
 	GetSSHInitializer() SSHInitializer
 	GetLinebreak() string
+	GetStartMode() string
 }
 
 var (
@@ -55,9 +56,9 @@ type OperatorManager struct {
 // Get method return Operator instance by string
 func (s *OperatorManager) Get(t string) Operator {
 	for k, v := range s.operatorMap {
-		logs.Debug("[ matching ]", k, t, v)
+		logs.Debug("[ matching ]", k, t)
 		if regexp.MustCompile(k).MatchString(t) {
-			logs.Debug("[ matched ]", k, t, v)
+			logs.Debug("[ matched ]", k, t)
 			return v
 		}
 	}

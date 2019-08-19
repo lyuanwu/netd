@@ -19,9 +19,12 @@ import (
 	"strings"
 	"time"
 
+	"github.com/songtianyi/rrframework/utils"
+
 	"github.com/sky-cloud-tec/netd/cli"
+	_ "github.com/sky-cloud-tec/netd/cli/cisco/asa" // load juniper srx
 	"github.com/sky-cloud-tec/netd/cli/conn"
-	_ "github.com/sky-cloud-tec/netd/cli/juniper/srx" // load juniper srx
+	_ "github.com/sky-cloud-tec/netd/cli/juniper/srx" // load cisco asa
 	"github.com/sky-cloud-tec/netd/common"
 	"github.com/sky-cloud-tec/netd/protocol"
 	"github.com/songtianyi/rrframework/logs"
@@ -49,7 +52,11 @@ func (s *CliHandler) Handle(req *protocol.CliRequest, res *protocol.CliResponse)
 	ch := make(chan error, 1)
 
 	go func() {
+		id := rrutils.NewV4().String()
+		req.LogPrefix = req.LogPrefix + " [ " + id + " ] "
+		logs.Debug(req.LogPrefix, "==========START==========")
 		ch <- doHandle(req, res)
+		logs.Debug(req.LogPrefix, "==========END==========")
 	}()
 
 	// timeout

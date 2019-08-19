@@ -15,7 +15,15 @@
 
 package cli
 
-// OpInit is common operator init function
-func OpInit() {
+import "regexp"
 
+// Match return true if any pattern in patterns match the input string
+func Match(patterns []*regexp.Regexp, s string) bool {
+	for _, v := range patterns {
+		matches := v.FindStringSubmatch(s)
+		if len(matches) > 0 {
+			return true
+		}
+	}
+	return false
 }
