@@ -16,7 +16,6 @@
 package ingress
 
 import (
-	"fmt"
 	"net"
 	"net/rpc/jsonrpc"
 	"testing"
@@ -200,7 +199,6 @@ func TestCiscoAsa_Set(t *testing.T) {
 			reply.CmdsStd,
 			ShouldNotBeNil,
 		)
-		fmt.Println(reply)
 		So(
 			len(reply.CmdsStd) == 2,
 			ShouldBeTrue,
