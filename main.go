@@ -83,7 +83,7 @@ func main() {
 	app.Flags = []cli.Flag{
 		cli.StringFlag{
 			Name:        "logfile, lf",
-			Value:       "/var/log/netd/netd.log",
+			Value:       "netd.log",
 			Usage:       "logfile path",
 			Destination: &appConfig.logCfg.Filepath,
 		},

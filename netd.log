@@ -1,0 +1,799 @@
+2019/09/12 16:51:35 [I] new jrpc connection established
+2019/09/12 16:51:35 [I] Receiving req &{juniper srx 6.0 juniper-srx-set-test configure_private ssh {admin r00tme} 192.168.1.252:22 [set security address-book global address WS-100.2.2.46_32 wildcard-address 100.2.2.46/32 commit] 30ns  }
+2019/09/12 16:51:35 [D] [ juniper-srx-set-test ] [ f2ca226b-8106-40c0-b5bb-deebed41323e ]  ==========START==========
+2019/09/12 16:51:35 [D] [ matching ] (?i)cisco\.asa\.(9|[0-9]{1,})\..* juniper.srx.6.0
+2019/09/12 16:51:35 [D] [ matching ] (?i)juniper\.v?srx\..* juniper.srx.6.0
+2019/09/12 16:51:35 [D] [ matched ] (?i)juniper\.v?srx\..* juniper.srx.6.0
+2019/09/12 16:51:35 [D] [ juniper-srx-set-test ] [ f2ca226b-8106-40c0-b5bb-deebed41323e ]  Acquiring sema...
+2019/09/12 16:51:35 [D] [ juniper-srx-set-test ] [ f2ca226b-8106-40c0-b5bb-deebed41323e ]  sema acquired
+2019/09/12 16:51:35 [D] [ juniper-srx-set-test ] [ f2ca226b-8106-40c0-b5bb-deebed41323e ]  creating cli conn...
+2019/09/12 16:51:36 [D] [ juniper-srx-set-test ] [ f2ca226b-8106-40c0-b5bb-deebed41323e ]  ( 14 ) admin@JunSRX> 
+2019/09/12 16:51:36 [I] [ juniper-srx-set-test ] [ f2ca226b-8106-40c0-b5bb-deebed41323e ]  [prompt matched] [admin@JunSRX> ]
+2019/09/12 16:51:36 [D] [ juniper-srx-set-test ] [ f2ca226b-8106-40c0-b5bb-deebed41323e ]  ( 1 ) c
+2019/09/12 16:51:36 [D] [ juniper-srx-set-test ] [ f2ca226b-8106-40c0-b5bb-deebed41323e ]  ( 2 ) on
+2019/09/12 16:51:36 [D] [ juniper-srx-set-test ] [ f2ca226b-8106-40c0-b5bb-deebed41323e ]  ( 4 ) figu
+2019/09/12 16:51:36 [D] [ juniper-srx-set-test ] [ f2ca226b-8106-40c0-b5bb-deebed41323e ]  ( 2 ) re
+2019/09/12 16:51:36 [D] [ juniper-srx-set-test ] [ f2ca226b-8106-40c0-b5bb-deebed41323e ]  ( 1 )  
+2019/09/12 16:51:36 [D] [ juniper-srx-set-test ] [ f2ca226b-8106-40c0-b5bb-deebed41323e ]  ( 2 ) pr
+2019/09/12 16:51:36 [D] [ juniper-srx-set-test ] [ f2ca226b-8106-40c0-b5bb-deebed41323e ]  ( 3 ) iva
+2019/09/12 16:51:36 [D] [ juniper-srx-set-test ] [ f2ca226b-8106-40c0-b5bb-deebed41323e ]  ( 3 ) te 
+2019/09/12 16:51:36 [D] [ juniper-srx-set-test ] [ f2ca226b-8106-40c0-b5bb-deebed41323e ]  ( 1 ) 
+
+2019/09/12 16:51:36 [D] [ juniper-srx-set-test ] [ f2ca226b-8106-40c0-b5bb-deebed41323e ]  ( 55 ) warning: uncommitted changes will be discarded on exit
+
+2019/09/12 16:51:36 [D] [ juniper-srx-set-test ] [ f2ca226b-8106-40c0-b5bb-deebed41323e ]  ( 28 ) Entering configuration mode
+
+2019/09/12 16:51:36 [D] [ juniper-srx-set-test ] [ f2ca226b-8106-40c0-b5bb-deebed41323e ]  ( 136 ) Users currently editing the configuration:
+  admin terminal d0 (pid 979) on since 2016-12-31 22:07:29 UTC, idle 3w1d 23:13
+      [edit]
+
+2019/09/12 16:51:36 [D] [ juniper-srx-set-test ] [ f2ca226b-8106-40c0-b5bb-deebed41323e ]  ( 22 ) 
+[edit]
+admin@JunSRX# 
+2019/09/12 16:51:36 [I] [ juniper-srx-set-test ] [ f2ca226b-8106-40c0-b5bb-deebed41323e ]  [prompt matched] [admin@JunSRX# ]
+2019/09/12 16:51:36 [D] [ juniper-srx-set-test ] [ f2ca226b-8106-40c0-b5bb-deebed41323e ]  ( 3 ) set
+2019/09/12 16:51:36 [D] [ juniper-srx-set-test ] [ f2ca226b-8106-40c0-b5bb-deebed41323e ]  ( 3 )  se
+2019/09/12 16:51:36 [D] [ juniper-srx-set-test ] [ f2ca226b-8106-40c0-b5bb-deebed41323e ]  ( 3 ) cur
+2019/09/12 16:51:36 [D] [ juniper-srx-set-test ] [ f2ca226b-8106-40c0-b5bb-deebed41323e ]  ( 3 ) ity
+2019/09/12 16:51:36 [D] [ juniper-srx-set-test ] [ f2ca226b-8106-40c0-b5bb-deebed41323e ]  ( 2 )  a
+2019/09/12 16:51:36 [D] [ juniper-srx-set-test ] [ f2ca226b-8106-40c0-b5bb-deebed41323e ]  ( 4 ) ddre
+2019/09/12 16:51:36 [D] [ juniper-srx-set-test ] [ f2ca226b-8106-40c0-b5bb-deebed41323e ]  ( 3 ) ss-
+2019/09/12 16:51:36 [D] [ juniper-srx-set-test ] [ f2ca226b-8106-40c0-b5bb-deebed41323e ]  ( 2 ) bo
+2019/09/12 16:51:36 [D] [ juniper-srx-set-test ] [ f2ca226b-8106-40c0-b5bb-deebed41323e ]  ( 1 ) o
+2019/09/12 16:51:36 [D] [ juniper-srx-set-test ] [ f2ca226b-8106-40c0-b5bb-deebed41323e ]  ( 1 ) k
+2019/09/12 16:51:36 [D] [ juniper-srx-set-test ] [ f2ca226b-8106-40c0-b5bb-deebed41323e ]  ( 3 )  gl
+2019/09/12 16:51:36 [D] [ juniper-srx-set-test ] [ f2ca226b-8106-40c0-b5bb-deebed41323e ]  ( 4 ) obal
+2019/09/12 16:51:36 [D] [ juniper-srx-set-test ] [ f2ca226b-8106-40c0-b5bb-deebed41323e ]  ( 2 )  a
+2019/09/12 16:51:36 [D] [ juniper-srx-set-test ] [ f2ca226b-8106-40c0-b5bb-deebed41323e ]  ( 3 ) ddr
+2019/09/12 16:51:36 [D] [ juniper-srx-set-test ] [ f2ca226b-8106-40c0-b5bb-deebed41323e ]  ( 1 ) e
+2019/09/12 16:51:36 [D] [ juniper-srx-set-test ] [ f2ca226b-8106-40c0-b5bb-deebed41323e ]  ( 2 ) ss
+2019/09/12 16:51:36 [D] [ juniper-srx-set-test ] [ f2ca226b-8106-40c0-b5bb-deebed41323e ]  ( 1 )  
+2019/09/12 16:51:36 [D] [ juniper-srx-set-test ] [ f2ca226b-8106-40c0-b5bb-deebed41323e ]  ( 2 ) WS
+2019/09/12 16:51:36 [D] [ juniper-srx-set-test ] [ f2ca226b-8106-40c0-b5bb-deebed41323e ]  ( 4 ) -100
+2019/09/12 16:51:36 [D] [ juniper-srx-set-test ] [ f2ca226b-8106-40c0-b5bb-deebed41323e ]  ( 2 ) .2
+2019/09/12 16:51:36 [D] [ juniper-srx-set-test ] [ f2ca226b-8106-40c0-b5bb-deebed41323e ]  ( 1 ) .
+2019/09/12 16:51:36 [D] [ juniper-srx-set-test ] [ f2ca226b-8106-40c0-b5bb-deebed41323e ]  ( 4 ) 2.46
+2019/09/12 16:51:36 [D] [ juniper-srx-set-test ] [ f2ca226b-8106-40c0-b5bb-deebed41323e ]  ( 1 ) _
+2019/09/12 16:51:36 [D] [ juniper-srx-set-test ] [ f2ca226b-8106-40c0-b5bb-deebed41323e ]  ( 2 ) 32
+2019/09/12 16:51:36 [D] [ juniper-srx-set-test ] [ f2ca226b-8106-40c0-b5bb-deebed41323e ]  ( 1 )  
+2019/09/12 16:51:36 [D] [ juniper-srx-set-test ] [ f2ca226b-8106-40c0-b5bb-deebed41323e ]  ( 1 ) w
+2019/09/12 16:51:36 [D] [ juniper-srx-set-test ] [ f2ca226b-8106-40c0-b5bb-deebed41323e ]  ( 1 ) i
+2019/09/12 16:51:36 [D] [ juniper-srx-set-test ] [ f2ca226b-8106-40c0-b5bb-deebed41323e ]  ( 1 ) l
+2019/09/12 16:51:36 [D] [ juniper-srx-set-test ] [ f2ca226b-8106-40c0-b5bb-deebed41323e ]  ( 1 ) d
+2019/09/12 16:51:36 [D] [ juniper-srx-set-test ] [ f2ca226b-8106-40c0-b5bb-deebed41323e ]  ( 3 ) car
+2019/09/12 16:51:36 [D] [ juniper-srx-set-test ] [ f2ca226b-8106-40c0-b5bb-deebed41323e ]  ( 2 ) d-
+2019/09/12 16:51:36 [D] [ juniper-srx-set-test ] [ f2ca226b-8106-40c0-b5bb-deebed41323e ]  ( 3 ) add
+2019/09/12 16:51:36 [D] [ juniper-srx-set-test ] [ f2ca226b-8106-40c0-b5bb-deebed41323e ]  ( 2 ) re
+2019/09/12 16:51:36 [D] [ juniper-srx-set-test ] [ f2ca226b-8106-40c0-b5bb-deebed41323e ]  ( 1 ) s
+2019/09/12 16:51:36 [D] [ juniper-srx-set-test ] [ f2ca226b-8106-40c0-b5bb-deebed41323e ]  ( 1 ) s
+2019/09/12 16:51:36 [D] [ juniper-srx-set-test ] [ f2ca226b-8106-40c0-b5bb-deebed41323e ]  ( 3 )  10
+2019/09/12 16:51:36 [D] [ juniper-srx-set-test ] [ f2ca226b-8106-40c0-b5bb-deebed41323e ]  ( 4 ) 0.2.
+2019/09/12 16:51:36 [D] [ juniper-srx-set-test ] [ f2ca226b-8106-40c0-b5bb-deebed41323e ]  ( 2 ) 2.
+2019/09/12 16:51:36 [D] [ juniper-srx-set-test ] [ f2ca226b-8106-40c0-b5bb-deebed41323e ]  ( 2 ) 46
+2019/09/12 16:51:36 [D] [ juniper-srx-set-test ] [ f2ca226b-8106-40c0-b5bb-deebed41323e ]  ( 1 ) /
+2019/09/12 16:51:36 [D] [ juniper-srx-set-test ] [ f2ca226b-8106-40c0-b5bb-deebed41323e ]  ( 1 ) 3
+2019/09/12 16:51:36 [D] [ juniper-srx-set-test ] [ f2ca226b-8106-40c0-b5bb-deebed41323e ]  ( 2 ) 2 
+2019/09/12 16:51:36 [D] [ juniper-srx-set-test ] [ f2ca226b-8106-40c0-b5bb-deebed41323e ]  ( 1 ) 
+
+2019/09/12 16:51:36 [D] [ juniper-srx-set-test ] [ f2ca226b-8106-40c0-b5bb-deebed41323e ]  ( 22 ) 
+[edit]
+admin@JunSRX# 
+2019/09/12 16:51:36 [I] [ juniper-srx-set-test ] [ f2ca226b-8106-40c0-b5bb-deebed41323e ]  [prompt matched] [admin@JunSRX# ]
+2019/09/12 16:51:36 [D] [ juniper-srx-set-test ] [ f2ca226b-8106-40c0-b5bb-deebed41323e ]  ( 3 ) com
+2019/09/12 16:51:36 [D] [ juniper-srx-set-test ] [ f2ca226b-8106-40c0-b5bb-deebed41323e ]  ( 3 ) mit
+2019/09/12 16:51:36 [D] [ juniper-srx-set-test ] [ f2ca226b-8106-40c0-b5bb-deebed41323e ]  ( 2 )  
+
+2019/09/12 16:51:37 [D] [ juniper-srx-set-test ] [ f2ca226b-8106-40c0-b5bb-deebed41323e ]  ( 16 ) commit complete
+
+2019/09/12 16:51:37 [D] [ juniper-srx-set-test ] [ f2ca226b-8106-40c0-b5bb-deebed41323e ]  ( 22 ) 
+[edit]
+admin@JunSRX# 
+2019/09/12 16:51:37 [I] [ juniper-srx-set-test ] [ f2ca226b-8106-40c0-b5bb-deebed41323e ]  [prompt matched] [admin@JunSRX# ]
+2019/09/12 16:51:37 [D] [ juniper-srx-set-test ] [ f2ca226b-8106-40c0-b5bb-deebed41323e ]  Releasing sema
+2019/09/12 16:51:37 [D] [ juniper-srx-set-test ] [ f2ca226b-8106-40c0-b5bb-deebed41323e ]  sema released
+2019/09/12 16:51:37 [D] [ juniper-srx-set-test ] [ f2ca226b-8106-40c0-b5bb-deebed41323e ]  ==========END==========
+2019/09/12 16:51:37 [I] new jrpc connection established
+2019/09/12 16:51:37 [I] Receiving req &{juniper srx 6.0 juniper-srx-show-test login ssh {admin r00tme} 192.168.1.252:22 [show configuration | display set | no-more] 30ns  }
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ==========START==========
+2019/09/12 16:51:37 [D] [ matching ] (?i)cisco\.asa\.(9|[0-9]{1,})\..* juniper.srx.6.0
+2019/09/12 16:51:37 [D] [ matching ] (?i)juniper\.v?srx\..* juniper.srx.6.0
+2019/09/12 16:51:37 [D] [ matched ] (?i)juniper\.v?srx\..* juniper.srx.6.0
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  Acquiring sema...
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  sema acquired
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  cli conn exist
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 3 ) exi
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 3 ) t 
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 42 ) Exiting configuration mode
+
+admin@JunSRX> 
+2019/09/12 16:51:37 [I] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  [prompt matched] [admin@JunSRX> ]
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 3 ) sho
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 1 ) w
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 2 )  c
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 2 ) on
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 2 ) fi
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 3 ) gur
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 1 ) a
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 1 ) t
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 3 ) ion
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 2 )  |
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 3 )  di
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 1 ) s
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 3 ) pla
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 1 ) y
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 4 )  set
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 2 )  |
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 4 )  no-
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 1 ) m
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 3 ) ore
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 1 )  
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 1 ) 
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 26 ) set version 12.1X47-D20.7
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 152 ) set system host-name JunSRX
+set system root-authentication encrypted-password "$1$H/6p0kBg$SiiXmKWSQKW1VcIlSJceU/"
+set system login user admin uid 2000
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 188 ) set system login user admin class super-user
+set system login user admin authentication encrypted-password "$1$pyA4oC5F$RmwcvOj6RSLIZOxOH8Bfa1"
+set system services ssh protocol-version v2
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 61 ) set system services web-management http interface ge-0/0/0.0
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 130 ) set system syslog user * any emergency
+set system syslog file messages any any
+set system syslog file messages authorization info
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 215 ) set system syslog file interactive-commands interactive-commands any
+set system license autoupdate url https://ae1.juniper.net/junos/key_retrieval
+set interfaces ge-0/0/0 unit 0 family inet address 192.168.1.252/24
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 133 ) set interfaces ge-0/0/1 unit 0 family inet address 172.16.20.254/24
+set interfaces ge-0/0/2 unit 0 family inet address 26.1.1.254/24
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 122 ) set interfaces ge-0/0/3 unit 0 family inet address 100.2.2.5/24
+set interfaces em1 unit 1 family inet address 12.1.1.1/24
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 120 ) set interfaces em1 unit 2 family inet address 13.2.2.2/24
+set interfaces vlan unit 10 family inet address 10.111.1.1/24
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 60 ) set interfaces vlan unit 11 family inet address 11.1.1.1/24
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 141 ) set routing-options static route 10.1.148.0/22 next-hop 192.168.1.192
+set routing-options static route 172.16.10.0/24 next-hop 192.168.1.250
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 140 ) set routing-options static route 10.1.13.0/24 next-hop 192.168.1.238
+set routing-options static route 10.17.141.0/24 next-hop 192.168.1.238
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 140 ) set routing-options static route 55.22.10.0/24 next-hop 192.168.1.232
+set routing-options static route 10.55.22.0/24 next-hop 192.168.1.232
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 253 ) set security address-book global address WS-100.2.2.46_32 wildcard-address 100.2.2.46/32
+set security address-book global address WS-100.2.2.8_32 description comment
+set security address-book global address WS-100.2.2.8_32 wildcard-address 100.2.2.8/32
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 80 ) set security address-book global address WS-192.168.1.45_32 description comment
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 220 ) set security address-book global address WS-192.168.1.45_32 wildcard-address 192.168.1.45/32
+set security address-book global address IP_ADDR-12.1.1.12_32 description "create by NAP 69449bd2-1449-44f6-b452-ec5767a2e1e8"
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 92 ) set security address-book global address IP_ADDR-12.1.1.12_32 wildcard-address 12.1.1.12/32
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 222 ) set security address-book global address IP_ADDR-10.1.13.10_32 description "create by NAP 69449bd2-1449-44f6-b452-ec5767a2e1e8"
+set security address-book global address IP_ADDR-10.1.13.10_32 wildcard-address 10.1.13.10/32
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 233 ) set security address-book global address IP_ADDR-192.168.1.34_32 description "create by NAP aaaa_3a208fcb-6970-42c5-8454-fc472516af97"
+set security address-book global address IP_ADDR-192.168.1.34_32 wildcard-address 192.168.1.34/32
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 134 ) set security address-book global address IP_ADDR-10.111.1.23_32 description "create by NAP aaaa_3a208fcb-6970-42c5-8454-fc472516af97"
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 96 ) set security address-book global address IP_ADDR-10.111.1.23_32 wildcard-address 10.111.1.23/32
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 182 ) set security address-book global address WS-22.44.33.46_32 wildcard-address 22.44.33.46/32
+set security address-book global address WS-100.2.2.146_32 wildcard-address 100.2.2.146/32
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 93 ) set security address-book global address WS-22.44.33.146_32 wildcard-address 22.44.33.146/32
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 80 ) set security address-book global address test description "NAP managed address"
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 163 ) set security address-book global address test wildcard-address 12.1.1.10/32
+set security address-book global address asa-outside description "NAP managed address"
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 291 ) set security address-book global address asa-outside wildcard-address 10.1.13.254/32
+set security address-book global address WS-11.1.1.0_32 description "create by NAP 5e114256-ac32-4fc7-a9c3-48ce44c36137"
+set security address-book global address WS-11.1.1.0_32 wildcard-address 11.1.1.0/32
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 174 ) set security address-book global address pa-testadr01 description "NAP managed address"
+set security address-book global address pa-testadr01 wildcard-address 172.16.22.0/32
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 335 ) set security address-book global address pa-testadr02 description "NAP managed address"
+set security address-book global address pa-testadr02 wildcard-address 172.16.22.1/32
+set security address-book global address WS-11.1.1.22_32 description afaf
+set security address-book global address WS-11.1.1.22_32 wildcard-address 11.1.1.22/32
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 77 ) set security address-book global address WS-192.168.1.55_32 description afaf
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 172 ) set security address-book global address WS-192.168.1.55_32 wildcard-address 192.168.1.55/32
+set security address-book global address xxf description "NAP managed address"
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 346 ) set security address-book global address xxf wildcard-address 192.168.1.22/32
+set security address-book global address WS-11.1.1.77_32 description 765494646
+set security address-book global address WS-11.1.1.77_32 wildcard-address 11.1.1.77/32
+set security address-book global address WS-12.1.1.22_32 description "Created at 2019-09-10 18:17:31"
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 276 ) set security address-book global address WS-12.1.1.22_32 wildcard-address 12.1.1.22/32
+set security address-book global address WS-11.1.1.11_32 description "Created at 2019-09-10 18:17:31"
+set security address-book global address WS-11.1.1.11_32 wildcard-address 11.1.1.11/32
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 284 ) set security address-book global address WS-11.1.1.44_32 description "Created at 2019-09-11 10:20:38"
+set security address-book global address WS-11.1.1.44_32 wildcard-address 11.1.1.44/32
+set security address-book global address-set pa-test01 description "NAP managed address group"
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 152 ) set security address-book global address-set pa-test01 address pa-testadr01
+set security address-book global address-set pa-test01 address pa-testadr02
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 62 ) set security screen ids-option untrust-screen icmp ping-death
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 128 ) set security screen ids-option untrust-screen ip source-route-option
+set security screen ids-option untrust-screen ip tear-drop
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 81 ) set security screen ids-option untrust-screen tcp syn-flood alarm-threshold 1024
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 250 ) set security screen ids-option untrust-screen tcp syn-flood attack-threshold 200
+set security screen ids-option untrust-screen tcp syn-flood source-threshold 1024
+set security screen ids-option untrust-screen tcp syn-flood destination-threshold 2048
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 76 ) set security screen ids-option untrust-screen tcp syn-flood queue-size 2000
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 126 ) set security screen ids-option untrust-screen tcp syn-flood timeout 20
+set security screen ids-option untrust-screen tcp land
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 200 ) set security nat source pool src-pool-200-2-2-9 address 200.2.2.9/32
+set security nat source pool NAT_POOL_ac08c address 100.2.2.9/32
+set security nat source pool NAT_POOL_ccff0 address 100.2.2.45/32
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 131 ) set security nat source pool NAT_POOL_f2b84 address 100.2.2.20/32
+set security nat source pool NAT_POOL_49a31 address 100.2.2.5/32
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 66 ) set security nat source pool NAT_POOL_ddbd6 address 100.2.2.19/32
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 204 ) set security nat source pool NAT_POOL_cdd53 address 218.17.16.23/32
+set security nat source pool NAT_POOL_8ab70 address 218.17.16.29/32
+set security nat source pool NAT_POOL_c83ba address 218.17.16.56/32
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 193 ) set security nat source pool NAT_POOL_1c2fb address 218.17.16.24/32
+set security nat source pool NAT_POOL_1c2fb port range 2000
+set security nat source pool NAT_POOL_21234 address 22.2.2.75/32
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 206 ) set security nat source pool NAT_POOL_dae80 address 172.16.220.1/32
+set security nat source pool snat_12_33_44_55-32 address 12.33.44.55/32
+set security nat source rule-set nat_policy_96953 from zone trust
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 164 ) set security nat source rule-set nat_policy_96953 to zone dmz
+set security nat source rule-set nat_policy_96953 rule rule_ac08c match source-address 172.16.10.2/32
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 105 ) set security nat source rule-set nat_policy_96953 rule rule_ac08c match destination-address 100.2.2.7/32
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 204 ) set security nat source rule-set nat_policy_96953 rule rule_ac08c then source-nat pool NAT_POOL_ac08c
+set security nat source rule-set nat_policy_96953 rule rule_ccff0 match source-address 10.1.148.19/32
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 209 ) set security nat source rule-set nat_policy_96953 rule rule_ccff0 match destination-address 22.45.44.34/32
+set security nat source rule-set nat_policy_96953 rule rule_ccff0 then source-nat pool NAT_POOL_ccff0
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 102 ) set security nat source rule-set nat_policy_96953 rule rule_f2b84 match source-address 10.1.148.35/32
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 107 ) set security nat source rule-set nat_policy_96953 rule rule_f2b84 match destination-address 22.33.44.56/32
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 102 ) set security nat source rule-set nat_policy_96953 rule rule_f2b84 then source-nat pool NAT_POOL_f2b84
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 207 ) set security nat source rule-set nat_policy_96953 rule rule_49a31 match source-address 172.16.10.3/32
+set security nat source rule-set nat_policy_96953 rule rule_49a31 match destination-address 100.2.2.7/32
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 330 ) set security nat source rule-set nat_policy_96953 rule rule_49a31 match destination-address 101.226.207.33/32
+set security nat source rule-set nat_policy_96953 rule rule_49a31 match destination-address 101.226.207.97/32
+set security nat source rule-set nat_policy_96953 rule rule_49a31 match destination-address 101.226.207.67/32
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 327 ) set security nat source rule-set nat_policy_96953 rule rule_49a31 match destination-address 222.73.184.37/32
+set security nat source rule-set nat_policy_96953 rule rule_49a31 match destination-address 222.73.184.240/32
+set security nat source rule-set nat_policy_96953 rule rule_49a31 match destination-address 60.29.239.76/32
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 299 ) set security nat source rule-set nat_policy_96953 rule rule_49a31 match destination-address 60.29.239.134/32
+set security nat source rule-set nat_policy_96953 rule rule_49a31 match destination-port 13135
+set security nat source rule-set nat_policy_96953 rule rule_49a31 match destination-port 27912
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 375 ) set security nat source rule-set nat_policy_96953 rule rule_49a31 match destination-port 19777
+set security nat source rule-set nat_policy_96953 rule rule_49a31 match protocol tcp
+set security nat source rule-set nat_policy_96953 rule rule_49a31 then source-nat interface
+set security nat source rule-set nat_policy_96953 rule rule_rsrsww match source-address 10.1.148.22/32
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 103 ) set security nat source rule-set nat_policy_96953 rule rule_rsrsww then source-nat pool NAT_POOL_ccff0
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 207 ) set security nat source rule-set nat_policy_96953 rule rule_ddbd6 match source-address 172.16.10.254/32
+set security nat source rule-set nat_policy_96953 rule rule_ddbd6 match source-address 172.16.10.65/32
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 312 ) set security nat source rule-set nat_policy_96953 rule rule_ddbd6 match destination-address 100.2.2.15/32
+set security nat source rule-set nat_policy_96953 rule rule_ddbd6 then source-nat pool NAT_POOL_ddbd6
+set security nat source rule-set nat_policy_96953 rule rule_acwfwe match source-address 172.16.10.22/32
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 291 ) set security nat source rule-set nat_policy_96953 rule rule_acwfwe then source-nat interface
+set security nat source rule-set nat_policy_96953 rule rule_acwfss match source-address 172.16.10.221/32
+set security nat source rule-set nat_policy_96953 rule rule_acwfss then source-nat interface
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 205 ) set security nat source rule-set nat_policy_96953 rule rule_any_test match source-address 0.0.0.0/0
+set security nat source rule-set nat_policy_96953 rule rule_any_test match destination-address 0.0.0.0/0
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 102 ) set security nat source rule-set nat_policy_96953 rule rule_any_test match application junos-icmp-all
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 95 ) set security nat source rule-set nat_policy_96953 rule rule_any_test then source-nat interface
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 305 ) set security nat source rule-set nat_policy_96953 rule rule_any_test2 match source-address 0.0.0.0/0
+set security nat source rule-set nat_policy_96953 rule rule_any_test2 match destination-address 0.0.0.0/0
+set security nat source rule-set nat_policy_96953 rule rule_any_test2 match destination-port 2235
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 89 ) set security nat source rule-set nat_policy_96953 rule rule_any_test2 match protocol tcp
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 160 ) set security nat source rule-set nat_policy_96953 rule rule_any_test2 then source-nat interface
+set security nat source rule-set nat_policy_6f410 from zone dmz
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 165 ) set security nat source rule-set nat_policy_6f410 to zone trust
+set security nat source rule-set nat_policy_6f410 rule rule_b6a17 match source-address 100.2.2.45/32
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 200 ) set security nat source rule-set nat_policy_6f410 rule rule_b6a17 match destination-address 22.45.43.44/32
+set security nat source rule-set nat_policy_6f410 rule rule_b6a17 match destination-port 345
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 187 ) set security nat source rule-set nat_policy_6f410 rule rule_b6a17 match protocol tcp
+set security nat source rule-set nat_policy_6f410 rule rule_b6a17 then source-nat pool NAT_POOL_1c2fb
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 66 ) set security nat source rule-set nat_policy_636de from zone trust
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 198 ) set security nat source rule-set nat_policy_636de to zone untrust
+set security nat source rule-set nat_policy_73054 from zone untrust
+set security nat source rule-set nat_policy_73054 to zone trust
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 230 ) set security nat destination pool dnat_pool_10-1-148-254 address 10.1.148.254/32
+set security nat destination pool dnat_pool_172-16-10-2 address 172.16.10.2/32
+set security nat destination pool NAT_POOL_b2e3f address 100.2.2.8/32
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 144 ) set security nat destination pool NAT_POOL_b87e0 address 10.1.148.11/32
+set security nat destination pool NAT_POOL_70b7e address 10.1.148.34/32
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 72 ) set security nat destination pool NAT_POOL_9ecbb address 172.16.10.5/32
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 208 ) set security nat destination pool NAT_POOL_d1b24 address 100.2.2.46/32
+set security nat destination pool NAT_POOL_8e39f address 172.16.10.5/32
+set security nat destination pool NAT_POOL_8e39f address port 33
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 137 ) set security nat destination pool TCP-321-321 address 10.2.3.4/32
+set security nat destination pool NAT_POOL_45fc5 address 100.2.2.99/32
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 75 ) set security nat destination pool dnat_10_1_13_55-32 address 10.1.13.55/32
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 168 ) set security nat destination pool dnat_192_168_11_124_32_8001 address 192.168.11.124/32
+set security nat destination pool dnat_192_168_11_124_32_8001 address port 8001
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 69 ) set security nat destination rule-set nat_policy_ae6bc from zone dmz
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 312 ) set security nat destination rule-set nat_policy_ae6bc rule rule_ae6bc match source-address 22.21.1.1/32
+set security nat destination rule-set nat_policy_ae6bc rule rule_ae6bc match destination-address 100.2.2.8/32
+set security nat destination rule-set nat_policy_ae6bc rule rule_ae6bc match destination-port 22
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 311 ) set security nat destination rule-set nat_policy_ae6bc rule rule_ae6bc match protocol tcp
+set security nat destination rule-set nat_policy_ae6bc rule rule_ae6bc then destination-nat pool dnat_pool_172-16-10-2
+set security nat destination rule-set nat_policy_ae6bc rule rule_b87e0 match source-address 0.0.0.0/0
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 299 ) set security nat destination rule-set nat_policy_ae6bc rule rule_b87e0 match destination-address 100.2.2.30/32
+set security nat destination rule-set nat_policy_ae6bc rule rule_b87e0 match destination-port 567
+set security nat destination rule-set nat_policy_ae6bc rule rule_b87e0 match protocol tcp
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 325 ) set security nat destination rule-set nat_policy_ae6bc rule rule_b87e0 then destination-nat pool NAT_POOL_b87e0
+set security nat destination rule-set nat_policy_ae6bc rule rule_70b7e match source-address 0.0.0.0/0
+set security nat destination rule-set nat_policy_ae6bc rule rule_70b7e match destination-address 100.2.2.30/32
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 98 ) set security nat destination rule-set nat_policy_ae6bc rule rule_70b7e match destination-port 431
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 90 ) set security nat destination rule-set nat_policy_ae6bc rule rule_70b7e match protocol tcp
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 1000 ) set security nat destination rule-set nat_policy_ae6bc rule rule_70b7e then destination-nat pool NAT_POOL_70b7e
+set security nat destination rule-set nat_policy_ae6bc rule rule_9ecbb match source-address 100.2.2.15/32
+set security nat destination rule-set nat_policy_ae6bc rule rule_9ecbb match destination-address 100.2.2.18/32
+set security nat destination rule-set nat_policy_ae6bc rule rule_9ecbb match destination-port 22
+set security nat destination rule-set nat_policy_ae6bc rule rule_9ecbb match protocol tcp
+set security nat destination rule-set nat_policy_ae6bc rule rule_9ecbb then destination-nat pool NAT_POOL_9ecbb
+set security nat destination rule-set nat_policy_eae71 from zone trust
+set security nat destination rule-set nat_policy_eae71 rule rule_45fc5 match source-address 0.0.0.0/0
+set security nat destination rule-set nat_policy_eae71 rule rule_45fc5 match destination-address 218.17.16.123/32
+set security nat destination rule-set nat_policy_eae71 rule rule_45fc5 match destinat
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 215 ) ion-port 899
+set security nat destination rule-set nat_policy_eae71 rule rule_45fc5 match protocol tcp
+set security nat destination rule-set nat_policy_eae71 rule rule_45fc5 then destination-nat pool NAT_POOL_45fc5
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 1000 ) set security nat destination rule-set nat_policy_f8a15 from zone untrust
+set security nat destination rule-set nat_policy_f8a15 rule rule_a9179 match source-address 26.1.1.45/32
+set security nat destination rule-set nat_policy_f8a15 rule rule_a9179 match destination-address 22.34.33.22/32
+set security nat destination rule-set nat_policy_f8a15 rule rule_a9179 match destination-port 345
+set security nat destination rule-set nat_policy_f8a15 rule rule_a9179 match protocol tcp
+set security nat destination rule-set nat_policy_f8a15 rule rule_a9179 then destination-nat pool dnat_10_1_13_55-32
+set security nat static rule-set nat_policy_8892c from zone dmz
+set security nat static rule-set nat_policy_8892c rule rule_8892c match destination-address 100.2.2.12/32
+set security nat static rule-set nat_policy_8892c rule rule_8892c then static-nat prefix 172.16.10.5/32
+set security nat static rule-set nat_policy_7389e from zone trust
+set security nat static rule-set nat_policy_7389e rule rule_7389e 
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 1000 ) match destination-address 218.17.16.34/32
+set security nat static rule-set nat_policy_7389e rule rule_7389e then static-nat prefix 100.2.2.45/32
+set security nat static rule-set nat_policy_7389e rule rtt match destination-address 218.17.16.36/32
+set security nat static rule-set nat_policy_7389e rule rtt then static-nat prefix 100.2.2.47/32
+set security nat static rule-set nat_policy_628ff from zone untrust
+set security nat static rule-set nat_policy_628ff rule host_45_66_66_55-32 match destination-address 45.66.66.55/32
+set security nat static rule-set nat_policy_628ff rule host_45_66_66_55-32 then static-nat prefix 10.1.14.48/32
+set security nat static rule-set nat_policy_628ff rule host_45_66_66_5 match destination-address 26.1.1.254/32
+set security nat static rule-set nat_policy_628ff rule host_45_66_66_5 then static-nat prefix 12.1.1.5/32
+set security nat proxy-arp interface ge-0/0/3.0 address 100.2.2.30/32
+set security nat proxy-arp interface ge-0/0/3.0 address 100.2.2.45/32
+set s
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 1000 ) ecurity nat proxy-arp interface ge-0/0/3.0 address 100.2.2.20/32
+set security nat proxy-arp interface ge-0/0/3.0 address 100.2.2.11/32
+set security nat proxy-arp interface ge-0/0/3.0 address 100.2.2.18/32
+set security nat proxy-arp interface ge-0/0/3.0 address 100.2.2.19/32
+set security nat proxy-arp interface ge-0/0/3.0 address 100.2.2.12/32
+set security nat proxy-arp interface ge-0/0/1.0 address 1.1.1.1/32
+set security nat proxy-arp interface ge-0/0/0.0 address 218.17.16.21/32
+set security nat proxy-arp interface ge-0/0/0.0 address 218.17.16.26/32
+set security nat proxy-arp interface ge-0/0/0.0 address 218.17.16.34/32
+set security nat proxy-arp interface ge-0/0/0.0 address 218.17.16.23/32
+set security nat proxy-arp interface ge-0/0/0.0 address 218.17.16.29/32
+set security nat proxy-arp interface ge-0/0/0.0 address 218.17.16.123/32
+set security nat proxy-arp interface ge-0/0/0.0 address 218.17.16.24/32
+set security nat proxy-arp interface ge-0/0/0.0 address 218.17.16.45/32
+set securit
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 1000 ) y nat proxy-arp interface ge-0/0/0.0 address 218.17.16.211/32
+set security nat proxy-arp interface ge-0/0/0.0 address 218.17.16.56/32
+set security policies global policy g_5eed6 description comment
+set security policies global policy g_5eed6 match source-address WS-100.2.2.8_32
+set security policies global policy g_5eed6 match destination-address WS-192.168.1.45_32
+set security policies global policy g_5eed6 match application junos-http
+set security policies global policy g_5eed6 then permit
+set security policies global policy g_c8e07 description "create by NAP 69449bd2-1449-44f6-b452-ec5767a2e1e8"
+set security policies global policy g_c8e07 match source-address IP_ADDR-12.1.1.12_32
+set security policies global policy g_c8e07 match destination-address IP_ADDR-10.1.13.10_32
+set security policies global policy g_c8e07 match application junos-http
+set security policies global policy g_c8e07 then permit
+set security policies global policy aaaa_603e2 description "create by NAP aaaa_3a208fcb
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 1000 ) -6970-42c5-8454-fc472516af97"
+set security policies global policy aaaa_603e2 match source-address IP_ADDR-192.168.1.34_32
+set security policies global policy aaaa_603e2 match destination-address IP_ADDR-10.111.1.23_32
+set security policies global policy aaaa_603e2 match application junos-http
+set security policies global policy aaaa_603e2 then permit
+set security policies global policy aaaa_603e2 scheduler-name Scheduler_684105227
+set security policies global policy g_4d491 description "create by NAP 4f467078-62af-4feb-b619-fff70812c1f2"
+set security policies global policy g_4d491 match source-address test
+set security policies global policy g_4d491 match destination-address asa-outside
+set security policies global policy g_4d491 match application any
+set security policies global policy g_4d491 then permit
+set security policies global policy g_5fada description "create by NAP 5e114256-ac32-4fc7-a9c3-48ce44c36137"
+set security policies global policy g_5fada match source-address WS-11.1.
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 1000 ) 1.0_32
+set security policies global policy g_5fada match destination-address pa-test01
+set security policies global policy g_5fada match application junos-http
+set security policies global policy g_5fada then permit
+set security policies global policy 123_bb08c description afaf
+set security policies global policy 123_bb08c match source-address WS-11.1.1.22_32
+set security policies global policy 123_bb08c match destination-address WS-192.168.1.55_32
+set security policies global policy 123_bb08c match application TCP-555
+set security policies global policy 123_bb08c then permit
+set security policies global policy 123_bb08c scheduler-name Scheduler_2029138218
+set security policies global policy g_eeafa description "Created at 2019-09-10 15:54:06"
+set security policies global policy g_eeafa match source-address xxf
+set security policies global policy g_eeafa match destination-address WS-11.1.1.77_32
+set security policies global policy g_eeafa match application TCP-555
+set security policies
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 1000 )  global policy g_eeafa then permit
+set security policies global policy g_eeafa scheduler-name Scheduler_143629645
+set security policies global policy g_43b3f description "Created at 2019-09-10 15:51:22"
+set security policies global policy g_43b3f match source-address xxf
+set security policies global policy g_43b3f match destination-address WS-11.1.1.77_32
+set security policies global policy g_43b3f match application TCP-555
+set security policies global policy g_43b3f then permit
+set security policies global policy g_43b3f scheduler-name Scheduler_118466767
+set security policies global policy g_f0b6a description 765494646
+set security policies global policy g_f0b6a match source-address xxf
+set security policies global policy g_f0b6a match destination-address WS-11.1.1.77_32
+set security policies global policy g_f0b6a match application trr
+set security policies global policy g_f0b6a then permit
+set security policies global policy g_f0b6a scheduler-name Scheduler_63248167
+set security pol
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 1000 ) icies global policy g_9c9ab description "Created at 2019-09-10 16:29:41"
+set security policies global policy g_9c9ab match source-address xxf
+set security policies global policy g_9c9ab match destination-address WS-11.1.1.77_32
+set security policies global policy g_9c9ab match application TCP-255
+set security policies global policy g_9c9ab then permit
+set security policies global policy g_72c8d description "Created at 2019-09-10 17:22:59"
+set security policies global policy g_72c8d match source-address xxf
+set security policies global policy g_72c8d match destination-address WS-11.1.1.77_32
+set security policies global policy g_72c8d match application TCP-255
+set security policies global policy g_72c8d then permit
+set security policies global policy afaf_d7a80 description "Created at 2019-09-10 18:17:31"
+set security policies global policy afaf_d7a80 match source-address WS-12.1.1.22_32
+set security policies global policy afaf_d7a80 match destination-address WS-11.1.1.11_32
+set securit
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 210 ) y policies global policy afaf_d7a80 match application TCP-255
+set security policies global policy afaf_d7a80 then permit
+set security policies global policy g_77f58 description "Created at 2019-09-11 10:20:38"
+
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 1000 ) set security policies global policy g_77f58 match source-address xxf
+set security policies global policy g_77f58 match destination-address WS-11.1.1.44_32
+set security policies global policy g_77f58 match application ICMP-0_22
+set security policies global policy g_77f58 then permit
+set security zones security-zone trust tcp-rst
+set security zones security-zone trust interfaces ge-0/0/0.0 host-inbound-traffic system-services all
+set security zones security-zone trust interfaces ge-0/0/0.0 host-inbound-traffic protocols all
+set security zones security-zone untrust screen untrust-screen
+set security zones security-zone untrust interfaces ge-0/0/2.0
+set security zones security-zone dmz interfaces ge-0/0/3.0 host-inbound-traffic system-services all
+set security zones security-zone dmz interfaces ge-0/0/3.0 host-inbound-traffic protocols all
+set security zones security-zone cop interfaces ge-0/0/1.0
+set firewall policer speedlimit_150K if-exceeding bandwidth-limit 150k
+set firewall policer s
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 1000 ) peedlimit_150K if-exceeding burst-size-limit 150k
+set firewall policer speedlimit_150K then discard
+set firewall filter 150k term 1 from source-address 192.168.1.16/32
+set firewall filter 150k term 1 from destination-address 0.0.0.0/0
+set firewall filter 150k term 1 from source-port 0-65535
+set firewall filter 150k term 1 from destination-port 0-65535
+set firewall filter 150k term 1 then policer speedlimit_150K
+set firewall filter 150k term 1 then accept
+set applications application TCP-22-22 protocol tcp
+set applications application TCP-22-22 destination-port 22
+set applications application TCP-22-22 description "create by natAndPolicyTicket bc582b75-6d96-49fe-8ed8-dff0a6de0a62"
+set applications application TCP-567-567 protocol tcp
+set applications application TCP-567-567 destination-port 567
+set applications application TCP-567-567 description "create by natAndPolicyTicket ab7cd3b6-ac19-4e23-972d-c90e0b48e2d4"
+set applications application TCP-45-45 protocol tcp
+set applications appli
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 1000 ) cation TCP-45-45 destination-port 45
+set applications application TCP-45-45 description "create by natAndPolicyTicket 488a91f0-153b-459b-8aaf-660db7d26529"
+set applications application TCP-431-431 protocol tcp
+set applications application TCP-431-431 destination-port 431
+set applications application TCP-431-431 description "create by natAndPolicyTicket 186efca2-fc48-4aa7-87e4-af4bbb872f18"
+set applications application TCP-334-334 protocol tcp
+set applications application TCP-334-334 destination-port 334
+set applications application TCP-334-334 description "create by NAP cb98b9d6-1af2-4345-8f19-51395312cbb1"
+set applications application TCP-34-34 protocol tcp
+set applications application TCP-34-34 destination-port 34
+set applications application TCP-34-34 description "create by NAP d1eca833-5407-40e6-9860-139c4f7502a1"
+set applications application TCP-342-342 protocol tcp
+set applications application TCP-342-342 destination-port 342
+set applications application TCP-342-342 description "
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 1000 ) create by NAP 2baae100-101e-4eef-a277-57dc311df5eb"
+set applications application TCP-324-324 protocol tcp
+set applications application TCP-324-324 destination-port 324
+set applications application TCP-323-323 protocol tcp
+set applications application TCP-323-323 destination-port 323
+set applications application TCP-323-323 description "create by NAP 25f4fc6f-36c3-4db8-bbf1-6ea3ee0558ee"
+set applications application TCP-321-321 protocol tcp
+set applications application TCP-321-321 destination-port 321
+set applications application TCP-321-321 description "create by NAP 4cc708ba-15eb-4288-8924-2f3e73cdceb0"
+set applications application TCP-343-343 protocol tcp
+set applications application TCP-343-343 destination-port 343
+set applications application TCP-343-343 description "create by NAP 5dedcce1-74b4-42e1-9599-bef4c5254a47"
+set applications application TCP-32-32 protocol tcp
+set applications application TCP-32-32 destination-port 32
+set applications application TCP-32-32 description "cre
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 1000 ) ate by NAP 2976e1c7-a6ee-4323-83de-0185b077abcc"
+set applications application TCP-899-899 protocol tcp
+set applications application TCP-899-899 destination-port 899
+set applications application TCP-899-899 description "create by NAP d3378851-07da-490d-9722-73ffe38b8ff7"
+set applications application TCP-32-55 protocol tcp
+set applications application TCP-32-55 destination-port 32-55
+set applications application TCP-32-55 description "create by NAP 82716526-8114-4a93-b6a1-116669a6fac0"
+set applications application TCP-345-345 protocol tcp
+set applications application TCP-345-345 destination-port 345
+set applications application TCP-345-345 description "create by NAP 6c0b9480-8412-4b06-bead-bae9c49dc1ca"
+set applications application TCP-8080 protocol tcp
+set applications application TCP-8080 destination-port 8080
+set applications application TCP-8080 description "create by NAP 0af1acc0-37de-4238-8b56-edb59f2856c6"
+set applications application TCP-112 protocol tcp
+set applications applicat
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 1000 ) ion TCP-112 destination-port 112
+set applications application TCP-112 description "create by NAP fae3391f-3b08-4c9a-851d-31fe21fa6767"
+set applications application TCP-80 protocol tcp
+set applications application TCP-80 destination-port 80
+set applications application TCP-80 description "create by NAP c3773bd2-45e9-4e06-859b-144badf0b08d"
+set applications application TCP-78 protocol tcp
+set applications application TCP-78 destination-port 78
+set applications application TCP-78 description "create by NAP 7e68daf3-4690-49f0-8133-81d5ee37327c"
+set applications application TCP-443 protocol tcp
+set applications application TCP-443 destination-port 443
+set applications application TCP-443 description "create by NAP 6184fbe9-d703-49a4-a611-a39d84d9dfbc"
+set applications application icmp66 protocol icmp
+set applications application TCP-1579 protocol tcp
+set applications application TCP-1579 destination-port 1579
+set applications application TCP-1579 description "create by NAP f4db537d-b3a4-451
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 1000 ) 3-a088-004800c707a0"
+set applications application TCP-1580 protocol tcp
+set applications application TCP-1580 destination-port 1580
+set applications application TCP-1580 description "create by NAP e707956c-c916-4ac8-b574-ff02bb0f0bbf"
+set applications application TCP-1581 protocol tcp
+set applications application TCP-1581 destination-port 1581
+set applications application TCP-1581 description "create by NAP 126e757e-d72e-4d4b-90ae-3add436df335"
+set applications application TCP-1582 protocol tcp
+set applications application TCP-1582 destination-port 1582
+set applications application TCP-1582 description "create by NAP e6aca1d8-ab11-40fe-861c-154a3ab829af"
+set applications application TCP-1572 protocol tcp
+set applications application TCP-1572 destination-port 1572
+set applications application TCP-1572 description "create by NAP 3470a914-95ed-4801-9a7d-395d7a107025"
+set applications application TCP-1587 protocol tcp
+set applications application TCP-1587 destination-port 1587
+set applicat
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 1000 ) ions application TCP-1587 description "create by NAP 12fad191-b8b1-4e6b-9779-9c6e8332b9ff"
+set applications application TCP-1586 protocol tcp
+set applications application TCP-1586 destination-port 1586
+set applications application TCP-1586 description "create by NAP 40bf3c20-9273-4163-b943-8c01c02054ed"
+set applications application TCP-1585 protocol tcp
+set applications application TCP-1585 destination-port 1585
+set applications application TCP-1585 description "create by NAP 9d087e3b-69b1-4230-b8b2-6749039f1799"
+set applications application TCP-1584 protocol tcp
+set applications application TCP-1584 description "create by NAP 41c71496-abbc-4146-adb9-431977c61b03"
+set applications application TCP-1574 protocol tcp
+set applications application TCP-1574 destination-port 1574
+set applications application TCP-1574 description "create by NAP 9aa1c9ad-35f0-472c-8c02-82b8f372442b"
+set applications application TCP-1573 protocol tcp
+set applications application TCP-1573 destination-port 1573
+se
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 192 ) t applications application TCP-1573 description "create by NAP 51654840-055c-4560-91a4-856afde4d75a"
+set applications application TCP-15100 protocol tcp
+set applications application TCP-15100 
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 1000 ) destination-port 15100
+set applications application TCP-15100 description "create by NAP 2656feca-0802-4997-b5c3-5bd4f41d7866"
+set applications application TCP-1599 protocol tcp
+set applications application TCP-1599 destination-port 1599
+set applications application TCP-1599 description "create by NAP d84f3c1d-6f81-42f2-8d1d-f89ce26e1d42"
+set applications application TCP-1598 protocol tcp
+set applications application TCP-1598 destination-port 1598
+set applications application TCP-1598 description "create by NAP 7ef6e623-725b-47f1-9e24-96c825f11cc6"
+set applications application TCP-1597 protocol tcp
+set applications application TCP-1597 destination-port 1597
+set applications application TCP-1597 description "create by NAP 6d228a3d-6821-486c-8f15-b78b143cb378"
+set applications application TCP-1596 protocol tcp
+set applications application TCP-1596 destination-port 1596
+set applications application TCP-1596 description "create by NAP 8caf9c06-77ce-4b3c-95aa-b6d9a8022e6b"
+set applications 
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 1000 ) application TCP-1595 protocol tcp
+set applications application TCP-1595 destination-port 1595
+set applications application TCP-1595 description "create by NAP 91787277-990f-4625-b2d6-c52dbd014ccf"
+set applications application TCP-1594 protocol tcp
+set applications application TCP-1594 destination-port 1594
+set applications application TCP-1594 description "create by NAP 2a77fbe5-3bd4-47bd-b5af-f39ac831dc1d"
+set applications application TCP-1593 protocol tcp
+set applications application TCP-1593 destination-port 1593
+set applications application TCP-1593 description "create by NAP 056bfe69-5579-41f9-abf1-71ca060b3cc4"
+set applications application TCP-1592 protocol tcp
+set applications application TCP-1592 destination-port 1592
+set applications application TCP-1592 description "create by NAP 3572ecc4-e71d-4d6d-b515-fcd1b33bd808"
+set applications application TCP-1591 protocol tcp
+set applications application TCP-1591 destination-port 1591
+set applications application TCP-1591 description 
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 1000 ) "create by NAP 9e1dfd3c-bba1-4412-a6cc-4824443ba973"
+set applications application TCP-1590 protocol tcp
+set applications application TCP-1590 destination-port 1590
+set applications application TCP-1590 description "create by NAP fa6f6ca9-c994-4c3c-98fc-2fa129faa4e0"
+set applications application TCP-1 protocol tcp
+set applications application TCP-1 destination-port 1
+set applications application TCP-1 description "create by NAP 8bd07a64-8a55-404c-9103-95eaef417138"
+set applications application at80 protocol tcp
+set applications application at80 destination-port 80
+set applications application TCP-99 protocol tcp
+set applications application TCP-99 source-port 99
+set applications application TCP-99 description "create by NAP _f52c52be-6cb8-4467-9d1b-25ef1c180283"
+set applications application udp_53 term udp_53 protocol udp
+set applications application udp_53 term udp_53 source-port 53-53
+set applications application tcp-343-343 protocol tcp
+set applications application tcp-343-343 destin
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 1000 ) ation-port 343
+set applications application TCP-2234 protocol tcp
+set applications application TCP-2234 destination-port 2234
+set applications application TCP-2234 description "create by NAP 8fc47d30-eba3-45c1-8079-983c67ecf99b"
+set applications application TCP-3346 protocol tcp
+set applications application TCP-3346 destination-port 3346
+set applications application TCP-3346 description "create by NAP 2b1c6369-f0f6-4bad-b248-7ae263c3a251"
+set applications application TCP-2345 protocol tcp
+set applications application TCP-2345 destination-port 2345
+set applications application TCP-2345 description "Created at 2019-07-31 10:49:16"
+set applications application asssd protocol icmp
+set applications application TCP-555 protocol tcp
+set applications application TCP-555 destination-port 555
+set applications application TCP-555 description afaf
+set applications application TCP-255 protocol tcp
+set applications application TCP-255 destination-port 255
+set applications application TCP-255 descrip
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 1000 ) tion "Created at 2019-09-10 16:29:41"
+set applications application ICMP-0_22 protocol icmp
+set applications application ICMP-0_22 icmp-type 0
+set applications application ICMP-0_22 icmp-code 22
+set applications application ICMP-0_22 description "Created at 2019-09-11 10:20:38"
+set applications application-set g1 application TCP-112
+set applications application-set trr description "NAP managed service group"
+set schedulers scheduler NAP_scheduler_DAILY_1800_2300 description "auto generated by NAP"
+set schedulers scheduler NAP_scheduler_DAILY_1800_2300 daily start-time 18:00 stop-time 23:00
+set schedulers scheduler Scheduler_684105227 description "auto generated by NAP"
+set schedulers scheduler Scheduler_684105227 start-date 2019-08-29.14:47 stop-date 2019-08-31.14:47
+set schedulers scheduler Scheduler_2029138218 description "auto generated by NAP"
+set schedulers scheduler Scheduler_2029138218 start-date 2019-09-10.15:34 stop-date 2019-10-10.23:59
+set schedulers scheduler Scheduler_63248
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 609 ) 167 description "auto generated by NAP"
+set schedulers scheduler Scheduler_63248167 start-date 2019-09-10.15:42 stop-date 2020-03-10.23:59
+set schedulers scheduler Scheduler_118466767 description "auto generated by NAP"
+set schedulers scheduler Scheduler_118466767 start-date 2019-09-10.15:51 stop-date 2019-10-10.23:59
+set schedulers scheduler Scheduler_143629645 description "auto generated by NAP"
+set schedulers scheduler Scheduler_143629645 daily start-time 18:00:00 stop-time 23:00:00
+set vlans OPERATIONS vlan-id 20
+set vlans SALES vlan-id 10
+set vlans sfsfs
+set vlans vlan10 vlan-id 10
+
+admin@JunSRX> 
+2019/09/12 16:51:37 [I] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  [prompt matched] [admin@JunSRX> ]
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  Releasing sema
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  sema released
+2019/09/12 16:51:37 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ==========END==========
+2019/09/12 16:51:37 [I] new jrpc connection established
+2019/09/12 16:51:37 [I] Receiving req &{cisco asa 9.6(x) cisco-asa-show-test login_enable ssh {admin r00tme} 192.168.1.238:22 [show running-config] 30ns  }
+2019/09/12 16:51:37 [D] [ cisco-asa-show-test ] [ 54ac3942-a860-4dfd-adec-8f6e215a3da3 ]  ==========START==========
+2019/09/12 16:51:37 [D] [ matching ] (?i)juniper\.ssg\..* cisco.asa.9.6(x)
+2019/09/12 16:51:37 [D] [ matching ] (?i)cisco\.asa\.(9|[0-9]{1,})\..* cisco.asa.9.6(x)
+2019/09/12 16:51:37 [D] [ matched ] (?i)cisco\.asa\.(9|[0-9]{1,})\..* cisco.asa.9.6(x)
+2019/09/12 16:51:37 [D] [ cisco-asa-show-test ] [ 54ac3942-a860-4dfd-adec-8f6e215a3da3 ]  Acquiring sema...
+2019/09/12 16:51:37 [D] [ cisco-asa-show-test ] [ 54ac3942-a860-4dfd-adec-8f6e215a3da3 ]  sema acquired
+2019/09/12 16:51:37 [D] [ cisco-asa-show-test ] [ 54ac3942-a860-4dfd-adec-8f6e215a3da3 ]  creating cli conn...
+2019/09/12 16:51:37 [E] [ cisco-asa-show-test ] [ 54ac3942-a860-4dfd-adec-8f6e215a3da3 ]  dial 192.168.1.238:22 error ssh: handshake failed: ssh: no common algorithm for key exchange; client offered: [curve25519-sha256@libssh.org ecdh-sha2-nistp256 ecdh-sha2-nistp384 ecdh-sha2-nistp521 diffie-hellman-group14-sha1], server offered: [diffie-hellman-group1-sha1]
+2019/09/12 16:51:37 [E] [ cisco-asa-show-test ] [ 54ac3942-a860-4dfd-adec-8f6e215a3da3 ]  new operator fail, [ cisco-asa-show-test ] [ 54ac3942-a860-4dfd-adec-8f6e215a3da3 ]  dial 192.168.1.238:22 error, ssh: handshake failed: ssh: no common algorithm for key exchange; client offered: [curve25519-sha256@libssh.org ecdh-sha2-nistp256 ecdh-sha2-nistp384 ecdh-sha2-nistp521 diffie-hellman-group14-sha1], server offered: [diffie-hellman-group1-sha1]
+2019/09/12 16:51:37 [D] [ cisco-asa-show-test ] [ 54ac3942-a860-4dfd-adec-8f6e215a3da3 ]  Releasing sema
+2019/09/12 16:51:37 [D] [ cisco-asa-show-test ] [ 54ac3942-a860-4dfd-adec-8f6e215a3da3 ]  sema released
+2019/09/12 16:51:37 [D] [ cisco-asa-show-test ] [ 54ac3942-a860-4dfd-adec-8f6e215a3da3 ]  ==========END==========
+2019/09/12 16:51:37 [I] new jrpc connection established
+2019/09/12 16:51:37 [I] Receiving req &{cisco asa 9.6(x) cisco-asa-set-test configure_terminal ssh {admin r00tme} 192.168.1.238:22 [object network cisco-asa-set-test
+  host 1.1.1.1
+exit no object network cisco-asa-set-test] 30ns  }
+2019/09/12 16:51:37 [D] [ cisco-asa-set-test ] [ 0c404226-95dc-406f-8eee-4f1737081c5c ]  ==========START==========
+2019/09/12 16:51:37 [D] [ matching ] (?i)juniper\.ssg\..* cisco.asa.9.6(x)
+2019/09/12 16:51:37 [D] [ matching ] (?i)cisco\.asa\.(9|[0-9]{1,})\..* cisco.asa.9.6(x)
+2019/09/12 16:51:37 [D] [ matched ] (?i)cisco\.asa\.(9|[0-9]{1,})\..* cisco.asa.9.6(x)
+2019/09/12 16:51:37 [D] [ cisco-asa-set-test ] [ 0c404226-95dc-406f-8eee-4f1737081c5c ]  Acquiring sema...
+2019/09/12 16:51:37 [D] [ cisco-asa-set-test ] [ 0c404226-95dc-406f-8eee-4f1737081c5c ]  sema acquired
+2019/09/12 16:51:37 [D] [ cisco-asa-set-test ] [ 0c404226-95dc-406f-8eee-4f1737081c5c ]  creating cli conn...
+2019/09/12 16:51:37 [E] [ cisco-asa-set-test ] [ 0c404226-95dc-406f-8eee-4f1737081c5c ]  dial 192.168.1.238:22 error ssh: handshake failed: ssh: no common algorithm for key exchange; client offered: [curve25519-sha256@libssh.org ecdh-sha2-nistp256 ecdh-sha2-nistp384 ecdh-sha2-nistp521 diffie-hellman-group14-sha1], server offered: [diffie-hellman-group1-sha1]
+2019/09/12 16:51:37 [E] [ cisco-asa-set-test ] [ 0c404226-95dc-406f-8eee-4f1737081c5c ]  new operator fail, [ cisco-asa-set-test ] [ 0c404226-95dc-406f-8eee-4f1737081c5c ]  dial 192.168.1.238:22 error, ssh: handshake failed: ssh: no common algorithm for key exchange; client offered: [curve25519-sha256@libssh.org ecdh-sha2-nistp256 ecdh-sha2-nistp384 ecdh-sha2-nistp521 diffie-hellman-group14-sha1], server offered: [diffie-hellman-group1-sha1]
+2019/09/12 16:51:37 [D] [ cisco-asa-set-test ] [ 0c404226-95dc-406f-8eee-4f1737081c5c ]  Releasing sema
+2019/09/12 16:51:37 [D] [ cisco-asa-set-test ] [ 0c404226-95dc-406f-8eee-4f1737081c5c ]  sema released
+2019/09/12 16:51:37 [D] [ cisco-asa-set-test ] [ 0c404226-95dc-406f-8eee-4f1737081c5c ]  ==========END==========
+2019/09/12 16:52:06 [I] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  Acquiring heartbeat sema...
+2019/09/12 16:52:06 [I] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  heartbeat sema acquired
+2019/09/12 16:52:06 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 16 ) 
+
+admin@JunSRX> 
+2019/09/12 16:52:06 [I] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  [prompt matched] [admin@JunSRX> ]
+2019/09/12 16:52:36 [I] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  Acquiring heartbeat sema...
+2019/09/12 16:52:36 [I] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  heartbeat sema acquired
+2019/09/12 16:52:36 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 16 ) 
+
+admin@JunSRX> 
+2019/09/12 16:52:36 [I] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  [prompt matched] [admin@JunSRX> ]
+2019/09/12 16:53:06 [I] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  Acquiring heartbeat sema...
+2019/09/12 16:53:06 [I] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  heartbeat sema acquired
+2019/09/12 16:53:06 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 16 ) 
+
+admin@JunSRX> 
+2019/09/12 16:53:06 [I] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  [prompt matched] [admin@JunSRX> ]
+2019/09/12 16:53:36 [I] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  Acquiring heartbeat sema...
+2019/09/12 16:53:36 [I] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  heartbeat sema acquired
+2019/09/12 16:53:36 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 16 ) 
+
+admin@JunSRX> 
+2019/09/12 16:53:36 [I] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  [prompt matched] [admin@JunSRX> ]
+2019/09/12 16:54:06 [I] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  Acquiring heartbeat sema...
+2019/09/12 16:54:06 [I] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  heartbeat sema acquired
+2019/09/12 16:54:06 [D] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  ( 16 ) 
+
+admin@JunSRX> 
+2019/09/12 16:54:06 [I] [ juniper-srx-show-test ] [ ce60702c-374a-40e2-a807-7e23b4a097d6 ]  [prompt matched] [admin@JunSRX> ]
