@@ -26,41 +26,40 @@ import (
 
 func init() {
 	// register ssg
-	cli.OperatorManagerInstance.Register(`(?i)juniper\.ssg\..*`, createOpJunos())
+	cli.OperatorManagerInstance.Register(`(?i)juniper\.ssg\..*`, createOpScreenOS())
 }
 
-type opJunos struct {
+type opScreenOS struct {
 	lineBeak    string // \r\n \n
 	transitions map[string][]string
 	prompts     map[string][]*regexp.Regexp
 	errs        []*regexp.Regexp
 }
 
-func createOpJunos() cli.Operator {
-	sixZeroLoginPrompt := regexp.MustCompile("^[[:alnum:]_]{1,}[.]{0,1}[[:alnum:]_-]{0,}@[[:alnum:]._-]+> $")
-	//sixZeroConfigPrompt := regexp.MustCompile("^[[:alnum:]_]{1,}[.]{0,1}[[:alnum:]_-]{0,}@[[:alnum:]._-]+# $")
-	return &opJunos{
+func createOpScreenOS() cli.Operator {
+	sixZeroLoginPrompt := regexp.MustCompile("[[:alnum:]]{1,}(-[[:alnum:]]+){0,}-> $")
+	return &opScreenOS{
 		transitions: map[string][]string{},
 		prompts: map[string][]*regexp.Regexp{
 			"login": {sixZeroLoginPrompt},
 		},
 
 		errs: []*regexp.Regexp{
-			regexp.MustCompile("^-*command not completed\n"),
-			regexp.MustCompile("^-*unknow keyword .*"),
+			regexp.MustCompile("\\^-+unknown keyword \\s+"),
+			regexp.MustCompile("\\^-+command not completed"),
 			regexp.MustCompile("\\^$"),
 		},
 		lineBeak: "\n",
 	}
 }
 
-func (s *opJunos) GetPrompts(k string) []*regexp.Regexp {
+func (s *opScreenOS) GetPrompts(k string) []*regexp.Regexp {
 	if v, ok := s.prompts[k]; ok {
 		return v
 	}
 	return nil
 }
-func (s *opJunos) GetTransitions(c, t string) []string {
+func (s *opScreenOS) GetTransitions(c, t string) []string {
 	k := c + "->" + t
 	if v, ok := s.transitions[k]; ok {
 		return v
@@ -68,19 +67,19 @@ func (s *opJunos) GetTransitions(c, t string) []string {
 	return nil
 }
 
-func (s *opJunos) GetErrPatterns() []*regexp.Regexp {
+func (s *opScreenOS) GetErrPatterns() []*regexp.Regexp {
 	return s.errs
 }
 
-func (s *opJunos) GetLinebreak() string {
+func (s *opScreenOS) GetLinebreak() string {
 	return s.lineBeak
 }
 
-func (s *opJunos) GetStartMode() string {
+func (s *opScreenOS) GetStartMode() string {
 	return "login"
 }
 
-func (s *opJunos) GetSSHInitializer() cli.SSHInitializer {
+func (s *opScreenOS) GetSSHInitializer() cli.SSHInitializer {
 	return func(c *ssh.Client) (io.Reader, io.WriteCloser, *ssh.Session, error) {
 		var err error
 		session, err := c.NewSession()
