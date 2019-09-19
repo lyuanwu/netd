@@ -19,7 +19,6 @@ import (
 	"net"
 	"net/rpc/jsonrpc"
 	"testing"
-	"fmt"
 
 	"github.com/sky-cloud-tec/netd/common"
 	"github.com/sky-cloud-tec/netd/protocol"
@@ -148,7 +147,6 @@ func TestJuniperSsg_Set(t *testing.T) {
 		var reply protocol.CliResponse
 		c := jsonrpc.NewClient(client)
 		err = c.Call("CliHandler.Handle", args, &reply)
-		fmt.Printf("reply.Retcode: %d common.OK: %d", reply.Retcode, common.OK)
 		So(
 			err,
 			ShouldBeNil,
@@ -161,7 +159,6 @@ func TestJuniperSsg_Set(t *testing.T) {
 			len(reply.CmdsStd) == 2,
 			ShouldBeTrue,
 		)
-		fmt.Printf("reply.Retcode: %d common.OK: %d", reply.Retcode, common.OK)	
 	})
 }
 

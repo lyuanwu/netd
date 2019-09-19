@@ -37,7 +37,7 @@ type opScreenOS struct {
 }
 
 func createOpScreenOS() cli.Operator {
-	sixZeroLoginPrompt := regexp.MustCompile("[[:alnum:]]{1,}(-[[:alnum:]]+){0,}-> $")
+	sixZeroLoginPrompt := regexp.MustCompile(".*-> $")
 	return &opScreenOS{
 		transitions: map[string][]string{},
 		prompts: map[string][]*regexp.Regexp{
