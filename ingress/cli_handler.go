@@ -49,14 +49,16 @@ func (s *CliHandler) Handle(req *protocol.CliRequest, res *protocol.CliResponse)
 		req.LogPrefix = "[ " + req.Device + " ]"
 	}
 
+	if req.Session == "" {
+		req.Session = rrutils.NewV4().String()
+	}
 	ch := make(chan error, 1)
 
 	go func() {
-		id := rrutils.NewV4().String()
-		req.LogPrefix = req.LogPrefix + " [ " + id + " ] "
-		logs.Debug(req.LogPrefix, "==========START==========")
+		req.LogPrefix = req.LogPrefix + " [ " + req.Session + " ] "
+		logs.Info(req.LogPrefix, "==========START==========")
 		ch <- doHandle(req, res)
-		logs.Debug(req.LogPrefix, "==========END==========")
+		logs.Info(req.LogPrefix, "==========END==========")
 	}()
 
 	// timeout

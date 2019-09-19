@@ -31,6 +31,7 @@ type CliRequest struct {
 	Timeout   time.Duration `json:"timeout"`   // req timeout setting
 	LogPrefix string        `json:"logPrefix"` // log prefix
 	EnablePwd string        `json:"enablePwd"` // enable password for cisco devices
+	Session   string        `json:"session"`   // session uuid
 }
 
 // Auth struct

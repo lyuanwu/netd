@@ -62,18 +62,18 @@ type CliConn struct {
 func Acquire(req *protocol.CliRequest, op cli.Operator) (*CliConn, error) {
 	// limit concurrency to 1
 	// there only one req for one connection always
-	logs.Debug(req.LogPrefix, "Acquiring sema...")
+	logs.Info(req.LogPrefix, "Acquiring sema...")
 	if semas[req.Address] == nil {
 		semas[req.Address] = make(chan struct{}, 1)
 	}
 	// try
 	semas[req.Address] <- struct{}{}
-	logs.Debug(req.LogPrefix, "sema acquired")
+	logs.Info(req.LogPrefix, "sema acquired")
 	// if cli conn already created
 	if v, ok := conns[req.Address]; ok {
 		v.req = req
 		v.op = op
-		logs.Debug(req.LogPrefix, "cli conn exist")
+		logs.Info(req.LogPrefix, "cli conn exist")
 		return v, nil
 	}
 	c, err := newCliConn(req, op)
@@ -87,14 +87,14 @@ func Acquire(req *protocol.CliRequest, op cli.Operator) (*CliConn, error) {
 // Release cli conn
 func Release(req *protocol.CliRequest) {
 	if len(semas[req.Address]) > 0 {
-		logs.Debug(req.LogPrefix, "Releasing sema")
+		logs.Info(req.LogPrefix, "Releasing sema")
 		<-semas[req.Address]
 	}
-	logs.Debug(req.LogPrefix, "sema released")
+	logs.Info(req.LogPrefix, "sema released")
 }
 
 func newCliConn(req *protocol.CliRequest, op cli.Operator) (*CliConn, error) {
-	logs.Debug(req.LogPrefix, "creating cli conn...")
+	logs.Info(req.LogPrefix, "creating cli conn...")
 	if strings.ToLower(req.Protocol) == "ssh" {
 		sshConfig := &ssh.ClientConfig{
 			User:            req.Auth.Username,
@@ -296,7 +296,7 @@ func (s *CliConn) readLines() *readBuffOut {
 		lastLine = s.findLastLine(waitingString + current)
 		matches := s.anyPatternMatches(lastLine, s.op.GetPrompts(s.mode))
 		if len(matches) > 0 {
-			logs.Info(s.req.LogPrefix, "[prompt matched]", matches)
+			logs.Info(s.req.LogPrefix, s.mode, ":", matches)
 			waitingString = strings.TrimSuffix(waitingString+current, matches[0])
 			break
 		}
@@ -347,8 +347,10 @@ func (s *CliConn) Exec() (map[string]string, error) {
 	if s.req.Mode != s.mode {
 		cmds := s.op.GetTransitions(s.mode, s.req.Mode)
 		// use target mode prompt
+		logs.Info(s.req.LogPrefix, s.mode, "-->", s.req.Mode)
 		s.mode = s.req.Mode
 		for _, v := range cmds {
+			logs.Info(s.req.LogPrefix, "exec", "<", v, ">")
 			if _, err := s.writeBuff(v); err != nil {
 				logs.Error(s.req.LogPrefix, "write buff failed,", err)
 				return nil, fmt.Errorf("write buff failed, %s", err)
@@ -363,6 +365,7 @@ func (s *CliConn) Exec() (map[string]string, error) {
 	cmdstd := make(map[string]string, 0)
 	// do execute cli commands
 	for _, v := range s.req.Commands {
+		logs.Info(s.req.LogPrefix, "exec", "<", v, ">")
 		if _, err := s.writeBuff(v); err != nil {
 			logs.Error(s.req.LogPrefix, "write buff failed,", err)
 			return cmdstd, fmt.Errorf("write buff failed, %s", err)
