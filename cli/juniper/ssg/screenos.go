@@ -37,11 +37,11 @@ type opScreenOS struct {
 }
 
 func createOpScreenOS() cli.Operator {
-	sixZeroLoginPrompt := regexp.MustCompile(".*-> $")
+	loginPrompt := regexp.MustCompile(".*-> $")
 	return &opScreenOS{
 		transitions: map[string][]string{},
 		prompts: map[string][]*regexp.Regexp{
-			"login": {sixZeroLoginPrompt},
+			"login": {loginPrompt},
 		},
 
 		errs: []*regexp.Regexp{
