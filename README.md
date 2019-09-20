@@ -23,7 +23,7 @@ go build .
 			Username: "xx",
 			Password: "xx",
 		},
-		Commands: []string{"set security address-book global address WS-100.2.2.46_32 wildcard-address 100.2.2.46/32"},
+		Commands: []string{"set security address-book global address WS-100.2.2.46_32 wildcard-address 100.2.2.46/255.255.255.255"},
 		Protocol: "ssh",
 		Mode:     "configure_private",
 		Timeout:  30, // seconds
