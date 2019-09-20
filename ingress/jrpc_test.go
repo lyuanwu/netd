@@ -133,12 +133,11 @@ func TestJuniperSsg_Set(t *testing.T) {
 				Username: "admin",
 				Password: "r00tme",
 			},
-			Commands: []string{"set address DMZ xdf 9.9.1.77/32 \"Created at 2019-08-22 15:36:33\"",
-				"set service xxx protocol tcp src-port 0-65535 dst-port 6562-6562",
-				`set policy id 999 name liao from Trust to DMZ addr1111 xdf xxx permit\n
-				set policy id 999\n
-				set service TCP-4444\nexit`,
-				"set address DMZ dengqianlei 19.19.1.77/32 \"Created at 2019-08-22 19:36:33\""},
+			Commands: []string{
+				`set policy id 999 name liao from Trust to DMZ addr1111 xdf xxx permit
+				set policy id 999
+				set service TCP-4444
+				exit`},
 			Protocol: "ssh",
 			Mode:     "login",
 			Timeout:  30,
@@ -155,7 +154,7 @@ func TestJuniperSsg_Set(t *testing.T) {
 			ShouldBeTrue,
 		)
 		So(
-			len(reply.CmdsStd) == 3,
+			len(reply.CmdsStd) == 1,
 			ShouldBeTrue,
 		)
 	})

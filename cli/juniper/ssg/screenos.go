@@ -45,9 +45,9 @@ func createOpScreenOS() cli.Operator {
 		},
 
 		errs: []*regexp.Regexp{
-			regexp.MustCompile("\\^-+unknown keyword \\s+"),
+			regexp.MustCompile("\\^-+unknown keyword .+"),
 			regexp.MustCompile("\\^-+command not completed"),
-			regexp.MustCompile("\\^$"),
+			regexp.MustCompile(": Duplicate entry"),
 		},
 		lineBeak: "\n",
 	}
