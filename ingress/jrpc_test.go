@@ -314,11 +314,11 @@ func TestPaloalto_Set(t *testing.T) {
 				Password: "r00tme",
 			},
 			Commands: []string{
-				`set deviceconfig system hostname PA-VM-1
-				commit`},
+				`set deviceconfig system hostname PA-VM-1`,
+				`commit`},
 			Protocol: "ssh",
 			Mode:     "configure",
-			Timeout:  30,
+			Timeout:  120, // commit
 		}
 		var reply protocol.CliResponse
 		c := jsonrpc.NewClient(client)
@@ -332,7 +332,7 @@ func TestPaloalto_Set(t *testing.T) {
 			ShouldBeTrue,
 		)
 		So(
-			len(reply.CmdsStd) == 1,
+			len(reply.CmdsStd) == 2,
 			ShouldBeTrue,
 		)
 	})
