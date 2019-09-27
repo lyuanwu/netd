@@ -204,6 +204,16 @@ func (s *CliConn) init() error {
 						// ==============================
 					}
 				}
+			} else if s.mode == "login" {
+				if s.req.Vendor == "paloalto" && s.req.Type == "pan-os" {
+					// set pager
+					if _, err := s.writeBuff("set cli pager off"); err != nil {
+						return err
+					}
+					if _, _, err := s.readBuff(); err != nil {
+						return err
+					}
+				}
 			}
 		}
 	}
@@ -296,7 +306,7 @@ func (s *CliConn) readLines() *readBuffOut {
 		lastLine = s.findLastLine(waitingString + current)
 		matches := s.anyPatternMatches(lastLine, s.op.GetPrompts(s.mode))
 		if len(matches) > 0 {
-			logs.Info(s.req.LogPrefix, s.mode, ":", matches)
+			logs.Info(s.req.LogPrefix, "prompt matched", s.mode, ":", matches)
 			waitingString = strings.TrimSuffix(waitingString+current, matches[0])
 			break
 		}
