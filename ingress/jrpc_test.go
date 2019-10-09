@@ -294,9 +294,97 @@ import (
 // 	})
 // }
 
-func TestPaloalto_Set(t *testing.T) {
+// func TestPaloalto_Set(t *testing.T) {
 
-	Convey("set Paloalto cli commands", t, func() {
+// 	Convey("set Paloalto cli commands", t, func() {
+// 		client, err := net.Dial("tcp", "localhost:8088")
+// 		So(
+// 			err,
+// 			ShouldBeNil,
+// 		)
+// 		// Synchronous call
+// 		args := &protocol.CliRequest{
+// 			Device:  "paloalto-set-test",
+// 			Vendor:  "Paloalto",
+// 			Type:    "Pan-OS",
+// 			Version: "8.1",
+// 			Address: "192.168.1.231:22",
+// 			Auth: protocol.Auth{
+// 				Username: "admin",
+// 				Password: "r00tme",
+// 			},
+// 			Commands: []string{
+// 				`set deviceconfig system hostname PA-VM-1`,
+// 				`commit`},
+// 			Protocol: "ssh",
+// 			Mode:     "configure",
+// 			Timeout:  120, // commit
+// 		}
+// 		var reply protocol.CliResponse
+// 		c := jsonrpc.NewClient(client)
+// 		err = c.Call("CliHandler.Handle", args, &reply)
+// 		So(
+// 			err,
+// 			ShouldBeNil,
+// 		)
+// 		So(
+// 			reply.Retcode == common.OK,
+// 			ShouldBeTrue,
+// 		)
+// 		So(
+// 			len(reply.CmdsStd) == 2,
+// 			ShouldBeTrue,
+// 		)
+// 	})
+// }
+
+// func TestPaloalto_Show(t *testing.T) {
+
+// 	Convey("show Paloalto cli commands", t, func() {
+// 		client, err := net.Dial("tcp", "localhost:8088")
+// 		So(
+// 			err,
+// 			ShouldBeNil,
+// 		)
+// 		// Synchronous call
+// 		args := &protocol.CliRequest{
+// 			Device:  "paloalto-show-test",
+// 			Vendor:  "Paloalto",
+// 			Type:    "Pan-OS",
+// 			Version: "8.1",
+// 			Address: "192.168.1.231:22",
+// 			Auth: protocol.Auth{
+// 				Username: "admin",
+// 				Password: "r00tme",
+// 			},
+// 			Commands: []string{
+// 				`
+// 				show config running`},
+// 			Protocol: "ssh",
+// 			Mode:     "login",
+// 			Timeout:  30,
+// 		}
+// 		var reply protocol.CliResponse
+// 		c := jsonrpc.NewClient(client)
+// 		err = c.Call("CliHandler.Handle", args, &reply)
+// 		So(
+// 			err,
+// 			ShouldBeNil,
+// 		)
+// 		So(
+// 			reply.Retcode == common.OK,
+// 			ShouldBeTrue,
+// 		)
+// 		So(
+// 			len(reply.CmdsStd) == 1,
+// 			ShouldBeTrue,
+// 		)
+// 	})
+// }
+
+func TestUSG6000V2_Set(t *testing.T) {
+
+	Convey("set USG6000V2 cli commands", t, func() {
 		client, err := net.Dial("tcp", "localhost:8088")
 		So(
 			err,
@@ -304,21 +392,25 @@ func TestPaloalto_Set(t *testing.T) {
 		)
 		// Synchronous call
 		args := &protocol.CliRequest{
-			Device:  "paloalto-set-test",
-			Vendor:  "Paloalto",
-			Type:    "Pan-OS",
-			Version: "8.1",
-			Address: "192.168.1.231:22",
+			Device:  "USG6000V2-set-test",
+			Vendor:  "HUAWEI",
+			Type:    "USG6000V2",
+			Version: "V500R005C10",
+			Address: "192.168.1.60:22",
 			Auth: protocol.Auth{
 				Username: "admin",
-				Password: "r00tme",
+				Password: "admin@123",
 			},
 			Commands: []string{
-				`set deviceconfig system hostname PA-VM-1`,
-				`commit`},
+				`security-policy`,
+				`rule name policy_test`,
+				`destination-address 10.1.1.1 24`,
+				`destination-address 3000::1 32`,
+				`destination-address geo-location BeiJing`,
+			},
 			Protocol: "ssh",
-			Mode:     "configure",
-			Timeout:  120, // commit
+			Mode:     "configuration",
+			Timeout:  30, // commit
 		}
 		var reply protocol.CliResponse
 		c := jsonrpc.NewClient(client)
@@ -332,15 +424,15 @@ func TestPaloalto_Set(t *testing.T) {
 			ShouldBeTrue,
 		)
 		So(
-			len(reply.CmdsStd) == 2,
+			len(reply.CmdsStd) == 1,
 			ShouldBeTrue,
 		)
 	})
 }
 
-func TestPaloalto_Show(t *testing.T) {
+func TestUSG6000V2_Show(t *testing.T) {
 
-	Convey("show Paloalto cli commands", t, func() {
+	Convey("Show USG6000V2 cli commands", t, func() {
 		client, err := net.Dial("tcp", "localhost:8088")
 		So(
 			err,
@@ -348,18 +440,18 @@ func TestPaloalto_Show(t *testing.T) {
 		)
 		// Synchronous call
 		args := &protocol.CliRequest{
-			Device:  "paloalto-show-test",
-			Vendor:  "Paloalto",
-			Type:    "Pan-OS",
-			Version: "8.1",
-			Address: "192.168.1.231:22",
+			Device:  "USG6000V2-set-test",
+			Vendor:  "HUAWEI",
+			Type:    "USG6000V2",
+			Version: "V500R005C10",
+			Address: "192.168.1.60:22",
 			Auth: protocol.Auth{
 				Username: "admin",
-				Password: "r00tme",
+				Password: "admin@123",
 			},
 			Commands: []string{
-				`
-				show config running`},
+				`display security-policy rule name policy_test`,
+			},
 			Protocol: "ssh",
 			Mode:     "login",
 			Timeout:  30,
