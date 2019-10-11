@@ -402,15 +402,17 @@ func TestUSG6000V2_Set(t *testing.T) {
 				Password: "admin@123",
 			},
 			Commands: []string{
-				`security-policy`,
-				`rule name policy_test`,
-				`destination-address 10.1.1.1 24`,
-				`destination-address 3000::1 32`,
-				`destination-address geo-location BeiJing`,
+				`security-policy 
+				rule name policy_test
+				destination-address 10.1.1.1 24
+				destination-address 3000::1 32
+				destination-address geo-location BeiJing
+				quit
+				quit`,
 			},
 			Protocol: "ssh",
-			Mode:     "configuration",
-			Timeout:  30, // commit
+			Mode:     "systemView",
+			Timeout:  30,
 		}
 		var reply protocol.CliResponse
 		c := jsonrpc.NewClient(client)
@@ -440,7 +442,7 @@ func TestUSG6000V2_Show(t *testing.T) {
 		)
 		// Synchronous call
 		args := &protocol.CliRequest{
-			Device:  "USG6000V2-set-test",
+			Device:  "USG6000V2-show-test",
 			Vendor:  "HUAWEI",
 			Type:    "USG6000V2",
 			Version: "V500R005C10",
@@ -450,7 +452,7 @@ func TestUSG6000V2_Show(t *testing.T) {
 				Password: "admin@123",
 			},
 			Commands: []string{
-				`display security-policy rule name policy_test`,
+				`display security-policy rule policy_test`,
 			},
 			Protocol: "ssh",
 			Mode:     "login",
