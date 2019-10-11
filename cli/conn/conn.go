@@ -205,7 +205,7 @@ func (s *CliConn) init() error {
 					}
 				}
 			} else if s.mode == "login" {
-				if s.req.Vendor == "paloalto" && s.req.Type == "pan-os" {
+				if s.req.Vendor == "Paloalto" && s.req.Type == "PAN-OS" {
 					// set pager
 					if _, err := s.writeBuff("set cli pager off"); err != nil {
 						return err
