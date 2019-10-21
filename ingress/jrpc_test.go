@@ -294,93 +294,93 @@ import (
 // 	})
 // }
 
-// func TestPaloalto_Set(t *testing.T) {
+func TestPaloalto_Set(t *testing.T) {
 
-// 	Convey("set Paloalto cli commands", t, func() {
-// 		client, err := net.Dial("tcp", "localhost:8088")
-// 		So(
-// 			err,
-// 			ShouldBeNil,
-// 		)
-// 		// Synchronous call
-// 		args := &protocol.CliRequest{
-// 			Device:  "paloalto-set-test",
-// 			Vendor:  "Paloalto",
-// 			Type:    "Pan-OS",
-// 			Version: "8.1",
-// 			Address: "192.168.1.231:22",
-// 			Auth: protocol.Auth{
-// 				Username: "admin",
-// 				Password: "r00tme",
-// 			},
-// 			Commands: []string{
-// 				`set deviceconfig system hostname PA-VM-1`,
-// 				`commit`},
-// 			Protocol: "ssh",
-// 			Mode:     "configure",
-// 			Timeout:  120, // commit
-// 		}
-// 		var reply protocol.CliResponse
-// 		c := jsonrpc.NewClient(client)
-// 		err = c.Call("CliHandler.Handle", args, &reply)
-// 		So(
-// 			err,
-// 			ShouldBeNil,
-// 		)
-// 		So(
-// 			reply.Retcode == common.OK,
-// 			ShouldBeTrue,
-// 		)
-// 		So(
-// 			len(reply.CmdsStd) == 2,
-// 			ShouldBeTrue,
-// 		)
-// 	})
-// }
+ 	Convey("set Paloalto cli commands", t, func() {
+ 		client, err := net.Dial("tcp", "localhost:8088")
+ 		So(
+ 			err,
+ 			ShouldBeNil,
+ 		)
+ 		// Synchronous call
+ 		args := &protocol.CliRequest{
+ 			Device:  "paloalto-set-test",
+ 			Vendor:  "paloalto",
+ 			Type:    "pan-os",
+ 			Version: "8.1",
+ 			Address: "192.168.1.231:22",
+ 			Auth: protocol.Auth{
+ 				Username: "admin",
+ 				Password: "r00tme",
+ 			},
+ 			Commands: []string{
+ 				`set deviceconfig system hostname PA-VM-1`,
+ 				`commit`},
+ 			Protocol: "ssh",
+ 			Mode:     "configure",
+ 			Timeout:  120, // commit
+ 		}
+ 		var reply protocol.CliResponse
+ 		c := jsonrpc.NewClient(client)
+ 		err = c.Call("CliHandler.Handle", args, &reply)
+ 		So(
+ 			err,
+ 			ShouldBeNil,
+ 		)
+ 		So(
+ 			reply.Retcode == common.OK,
+ 			ShouldBeTrue,
+ 		)
+ 		So(
+ 			len(reply.CmdsStd) == 2,
+ 			ShouldBeTrue,
+ 		)
+ 	})
+}
 
-// func TestPaloalto_Show(t *testing.T) {
+func TestPaloalto_Show(t *testing.T) {
 
-// 	Convey("show Paloalto cli commands", t, func() {
-// 		client, err := net.Dial("tcp", "localhost:8088")
-// 		So(
-// 			err,
-// 			ShouldBeNil,
-// 		)
-// 		// Synchronous call
-// 		args := &protocol.CliRequest{
-// 			Device:  "paloalto-show-test",
-// 			Vendor:  "Paloalto",
-// 			Type:    "Pan-OS",
-// 			Version: "8.1",
-// 			Address: "192.168.1.231:22",
-// 			Auth: protocol.Auth{
-// 				Username: "admin",
-// 				Password: "r00tme",
-// 			},
-// 			Commands: []string{
-// 				`
-// 				show config running`},
-// 			Protocol: "ssh",
-// 			Mode:     "login",
-// 			Timeout:  30,
-// 		}
-// 		var reply protocol.CliResponse
-// 		c := jsonrpc.NewClient(client)
-// 		err = c.Call("CliHandler.Handle", args, &reply)
-// 		So(
-// 			err,
-// 			ShouldBeNil,
-// 		)
-// 		So(
-// 			reply.Retcode == common.OK,
-// 			ShouldBeTrue,
-// 		)
-// 		So(
-// 			len(reply.CmdsStd) == 1,
-// 			ShouldBeTrue,
-// 		)
-// 	})
-// }
+ 	Convey("show Paloalto cli commands", t, func() {
+ 		client, err := net.Dial("tcp", "localhost:8088")
+ 		So(
+ 			err,
+ 			ShouldBeNil,
+ 		)
+ 		// Synchronous call
+ 		args := &protocol.CliRequest{
+ 			Device:  "paloalto-show-test",
+ 			Vendor:  "paloalto",
+ 			Type:    "pan-os",
+ 			Version: "8.1",
+ 			Address: "192.168.1.231:22",
+ 			Auth: protocol.Auth{
+ 				Username: "admin",
+ 				Password: "r00tme",
+ 			},
+ 			Commands: []string{
+ 				`
+ 				show config running`},
+ 			Protocol: "ssh",
+ 			Mode:     "login",
+ 			Timeout:  30,
+ 		}
+ 		var reply protocol.CliResponse
+ 		c := jsonrpc.NewClient(client)
+ 		err = c.Call("CliHandler.Handle", args, &reply)
+ 		So(
+ 			err,
+ 			ShouldBeNil,
+ 		)
+ 		So(
+ 			reply.Retcode == common.OK,
+ 			ShouldBeTrue,
+ 		)
+ 		So(
+ 			len(reply.CmdsStd) == 1,
+ 			ShouldBeTrue,
+ 		)
+ 	})
+}
 
 func TestUSG6000V2_Set(t *testing.T) {
 
@@ -392,9 +392,9 @@ func TestUSG6000V2_Set(t *testing.T) {
 		)
 		// Synchronous call
 		args := &protocol.CliRequest{
-			Device:  "USG6000V2-set-test",
-			Vendor:  "HUAWEI",
-			Type:    "USG6000V2",
+			Device:  "usg6000v2-set-test",
+			Vendor:  "huawei",
+			Type:    "usg6000v2",
 			Version: "V500R005C10",
 			Address: "192.168.1.60:22",
 			Auth: protocol.Auth{
@@ -442,9 +442,9 @@ func TestUSG6000V2_Show(t *testing.T) {
 		)
 		// Synchronous call
 		args := &protocol.CliRequest{
-			Device:  "USG6000V2-show-test",
-			Vendor:  "HUAWEI",
-			Type:    "USG6000V2",
+			Device:  "usg6000v2-show-test",
+			Vendor:  "huawei",
+			Type:    "usg6000v2",
 			Version: "V500R005C10",
 			Address: "192.168.1.60:22",
 			Auth: protocol.Auth{
