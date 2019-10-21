@@ -13,7 +13,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-package asa
+package USG6000V
 
 import (
 	"fmt"
@@ -38,7 +38,7 @@ type opUsg6000V struct {
 
 func createopUsg6000V() cli.Operator {
 	loginPrompt := regexp.MustCompile("^<[[:alnum:]]{1,}[[:digit:]]{1,}[[:alnum:]]{1,}>$")
-	systemViewlPrompt := regexp.MustCompile(`^[[[:alnum:]]{1,}[[:digit:]]{1,}[[:alnum:]]{1,}]`)
+	systemViewPrompt := regexp.MustCompile(`^[[[:alnum:]]{1,}[[:digit:]]{1,}[[:alnum:]]{1,}]`)
 	return &opUsg6000V{
 		// mode transition
 		// login -> systemView
@@ -48,7 +48,7 @@ func createopUsg6000V() cli.Operator {
 		},
 		prompts: map[string][]*regexp.Regexp{
 			"login":         {loginPrompt},
-			"systemView":    {systemViewlPrompt},
+		 	"systemView":    {systemViewPrompt},
 		},
 		errs: []*regexp.Regexp{
 			regexp.MustCompile("^Error: Unrecognized command found at '\\^' position\\."),
