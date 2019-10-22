@@ -26,7 +26,7 @@ import (
 
 func init() {
 	// register HUAWEI USG6000V2
-	cli.OperatorManagerInstance.Register(`(?i)HUAWEI\.USG6000V2\..*`, createopUsg6000V())
+	cli.OperatorManagerInstance.Register(`(?i)huawei\.usg6000v2\..*`, createopUsg6000V())
 }
 
 type opUsg6000V struct {
