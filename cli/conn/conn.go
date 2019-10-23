@@ -185,7 +185,7 @@ func (s *CliConn) init() error {
 						s.mode = "login"
 						return fmt.Errorf("readBuff after enable err, %s", err)
 					}
-					if s.req.Vendor == "cisco" && s.req.Type == "asa" {
+					if strings.EqualFold(s.req.Vendor, "cisco") && strings.EqualFold(s.req.Type, "asa") {
 						// ===config or normal both ok===
 						// set terminal pager
 						if _, err := s.writeBuff("terminal pager 0"); err != nil {
@@ -205,7 +205,7 @@ func (s *CliConn) init() error {
 					}
 				}
 			} else if s.mode == "login" {
-				if s.req.Vendor == "paloalto" && s.req.Type == "pan-os" {
+				if strings.EqualFold(s.req.Vendor, "Paloalto") && strings.EqualFold(s.req.Type, "Pan-os") {
 					// set pager
 					if _, err := s.writeBuff("set cli pager off"); err != nil {
 						return err
