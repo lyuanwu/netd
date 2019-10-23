@@ -38,17 +38,17 @@ type opUsg6000V struct {
 
 func createopUsg6000V() cli.Operator {
 	loginPrompt := regexp.MustCompile("^<[[:alnum:]]{1,}[[:digit:]]{1,}[[:alnum:]]{1,}>$")
-	systemViewlPrompt := regexp.MustCompile(`^[[[:alnum:]]{1,}[[:digit:]]{1,}[[:alnum:]]{1,}]`)
+	systemViewPrompt := regexp.MustCompile(`^[[[:alnum:]]{1,}[[:digit:]]{1,}[[:alnum:]]{1,}]`)
 	return &opUsg6000V{
 		// mode transition
 		// login -> systemView
 		transitions: map[string][]string{
-			"login->systemView": {"system-view"},
-			"systemView->login": {"quit"},
+			"login->system_View": {"system-view"},
+			"system_View->login": {"quit"},
 		},
 		prompts: map[string][]*regexp.Regexp{
 			"login":         {loginPrompt},
-			"systemView":    {systemViewlPrompt},
+			"system_View":    {systemViewPrompt},
 		},
 		errs: []*regexp.Regexp{
 			regexp.MustCompile("^Error: Unrecognized command found at '\\^' position\\."),
