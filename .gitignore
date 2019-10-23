@@ -1,3 +1,5 @@
 netd
-netd.exe
-netd.log
+netd.exe*
+netd*.log
+.vscode
+ingress/debug.test

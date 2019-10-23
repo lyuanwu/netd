@@ -24,8 +24,10 @@ import (
 	"github.com/sky-cloud-tec/netd/cli"
 	_ "github.com/sky-cloud-tec/netd/cli/cisco/asa" // load juniper srx
 	"github.com/sky-cloud-tec/netd/cli/conn"
-	_ "github.com/sky-cloud-tec/netd/cli/juniper/srx" // load cisco asa
-	_ "github.com/sky-cloud-tec/netd/cli/juniper/ssg" // load juniper ssg
+	_ "github.com/sky-cloud-tec/netd/cli/juniper/srx"    // load cisco asa
+	_ "github.com/sky-cloud-tec/netd/cli/juniper/ssg"    // load juniper ssg
+	_ "github.com/sky-cloud-tec/netd/cli/paloalto/panos" // load paloalto panos
+	_ "github.com/sky-cloud-tec/netd/cli/huawei/usg" // load huawei USG
 	"github.com/sky-cloud-tec/netd/common"
 	"github.com/sky-cloud-tec/netd/protocol"
 	"github.com/songtianyi/rrframework/logs"
