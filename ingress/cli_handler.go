@@ -28,6 +28,7 @@ import (
 	_ "github.com/sky-cloud-tec/netd/cli/juniper/ssg"    // load juniper ssg
 	_ "github.com/sky-cloud-tec/netd/cli/paloalto/panos" // load paloalto panos
 	_ "github.com/sky-cloud-tec/netd/cli/huawei/usg" // load huawei USG
+	_ "github.com/sky-cloud-tec/netd/cli/cisco/ios" // load cisco switch ios
 	"github.com/sky-cloud-tec/netd/common"
 	"github.com/sky-cloud-tec/netd/protocol"
 	"github.com/songtianyi/rrframework/logs"
@@ -82,7 +83,7 @@ func doHandle(req *protocol.CliRequest, res *protocol.CliResponse) error {
 	if op == nil {
 		logs.Error(req.LogPrefix, "no operator match", t)
 		*res = makeCliErrRes(common.ErrNoOpFound, "no operator match "+t)
-		return nil
+		return nil 
 	}
 	// acquire cli connection, it could be blocked here for concurrency
 	c, err := conn.Acquire(req, op)

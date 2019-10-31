@@ -185,23 +185,8 @@ func (s *CliConn) init() error {
 						s.mode = "login"
 						return fmt.Errorf("readBuff after enable err, %s", err)
 					}
-					if strings.EqualFold(s.req.Vendor, "cisco") && strings.EqualFold(s.req.Type, "asa") {
-						// ===config or normal both ok===
-						// set terminal pager
-						if _, err := s.writeBuff("terminal pager 0"); err != nil {
-							return err
-						}
-						if _, _, err := s.readBuff(); err != nil {
-							return err
-						}
-						// set page lines
-						if _, err := s.writeBuff("terminal pager lines 0"); err != nil {
-							return err
-						}
-						if _, _, err := s.readBuff(); err != nil {
-							return err
-						}
-						// ==============================
+					if err := s.closePage(); err != nil {
+						return err;
 					}
 				}
 			} else if s.mode == "login" {
@@ -219,6 +204,35 @@ func (s *CliConn) init() error {
 	}
 	s.heartbeat()
 	return nil
+}
+
+func (s *CliConn) closePage() error {
+	if strings.EqualFold(s.req.Vendor, "cisco") && strings.EqualFold(s.req.Type, "asa") {
+		// ===config or normal both ok===
+		// set terminal pager
+		if _, err := s.writeBuff("terminal pager 0"); err != nil {
+			return err
+		}
+		if _, _, err := s.readBuff(); err != nil {
+			return err
+		}
+		// set page lines
+		if _, err := s.writeBuff("terminal pager lines 0"); err != nil {
+			return err
+		}
+		if _, _, err := s.readBuff(); err != nil {
+			return err
+		}
+		// ==============================
+	} else if strings.EqualFold(s.req.Vendor, "cisco") && strings.EqualFold(s.req.Type, "ios") {
+		if _, err := s.writeBuff("terminal length 0"); err != nil {
+			return err;
+		}
+		if _, _, err := s.readBuff(); err != nil {
+			return err;
+		}
+	}
+	return nil;
 }
 
 // Close cli conn

@@ -13,7 +13,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-package ssg
+package ios
 
 import (
 	"fmt"
@@ -25,43 +25,50 @@ import (
 )
 
 func init() {
-	// register ssg
-	cli.OperatorManagerInstance.Register(`(?i)juniper\.ssg\..*`, createOpScreenOS())
+	// register ios
+	cli.OperatorManagerInstance.Register(`(?i)cisco\.ios\..*`, createIos())
 }
 
-type opScreenOS struct {
+type IosOperator struct {
 	lineBeak    string // \r\n \n
 	transitions map[string][]string
 	prompts     map[string][]*regexp.Regexp
 	errs        []*regexp.Regexp
 }
 
-func createOpScreenOS() cli.Operator {
-	loginPrompt := regexp.MustCompile(".*-> $")
-	return &opScreenOS{
-		transitions: map[string][]string{},
-		prompts: map[string][]*regexp.Regexp{
-			"login": {loginPrompt},
+func createIos() cli.Operator {
+	loginPrompt := regexp.MustCompile("^[[:alnum:]._-]+> ?$")
+	loginEnablePrompt := regexp.MustCompile("[[:alnum:]]{1,}(-[[:alnum:]]+){0,}#$")
+	configTerminalPrompt := regexp.MustCompile(`[[:alnum:]]{1,}(-[[:alnum:]]+){0,}\(config\)#$`)
+	return &IosOperator{
+		// mode transition
+		// login_enable -> configure_terminal
+		transitions: map[string][]string{
+			"login_enable->configure_terminal": {"config terminal"},
+			"configure_terminal->login_enable": {"exit"},
 		},
-
+		prompts: map[string][]*regexp.Regexp{
+			"login_or_login_enable": {loginPrompt, loginEnablePrompt},
+			"login":                 {loginPrompt},
+			"login_enable":          {loginEnablePrompt},
+			"configure_terminal":    {configTerminalPrompt},
+		},
 		errs: []*regexp.Regexp{
-			regexp.MustCompile("\\^-+unknown keyword .+"),
-			regexp.MustCompile("\\^-+command not completed"),
-			regexp.MustCompile(": Duplicate entry"),
-			regexp.MustCompile("^Service: Not found"),
-			regexp.MustCompile("^Failed command -"),
+			regexp.MustCompile("^Command authorization failed\\.$"),
+			regexp.MustCompile("^% "),
+			regexp.MustCompile("^Command rejected:"),
 		},
 		lineBeak: "\n",
 	}
 }
 
-func (s *opScreenOS) GetPrompts(k string) []*regexp.Regexp {
+func (s *IosOperator) GetPrompts(k string) []*regexp.Regexp {
 	if v, ok := s.prompts[k]; ok {
 		return v
 	}
 	return nil
 }
-func (s *opScreenOS) GetTransitions(c, t string) []string {
+func (s *IosOperator) GetTransitions(c, t string) []string {
 	k := c + "->" + t
 	if v, ok := s.transitions[k]; ok {
 		return v
@@ -69,19 +76,19 @@ func (s *opScreenOS) GetTransitions(c, t string) []string {
 	return nil
 }
 
-func (s *opScreenOS) GetErrPatterns() []*regexp.Regexp {
+func (s *IosOperator) GetErrPatterns() []*regexp.Regexp {
 	return s.errs
 }
 
-func (s *opScreenOS) GetLinebreak() string {
+func (s *IosOperator) GetLinebreak() string {
 	return s.lineBeak
 }
 
-func (s *opScreenOS) GetStartMode() string {
-	return "login"
+func (s *IosOperator) GetStartMode() string {
+	return "login_or_login_enable"
 }
 
-func (s *opScreenOS) GetSSHInitializer() cli.SSHInitializer {
+func (s *IosOperator) GetSSHInitializer() cli.SSHInitializer {
 	return func(c *ssh.Client) (io.Reader, io.WriteCloser, *ssh.Session, error) {
 		var err error
 		session, err := c.NewSession()
