@@ -52,7 +52,6 @@ func createNxOs() cli.Operator {
 		},
 		errs: []*regexp.Regexp{
 			regexp.MustCompile("^Command authorization failed\\.$"),
-			regexp.MustCompile("^% "),
 			regexp.MustCompile("^Command rejected:"),
 		},
 		lineBeak: "\n",
