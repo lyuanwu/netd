@@ -475,9 +475,99 @@ import (
 // 		)
 // 	})
 // }
+
+// func TestIos_Show(t *testing.T) {
+
+// 	Convey("show ios cli commands", t, func() {
+// 		client, err := net.Dial("tcp", "localhost:8088")
+// 		So(
+// 			err,
+// 			ShouldBeNil,
+// 		)
+// 		// Synchronous call
+// 		args := &protocol.CliRequest{
+// 			Device:  "ios-show-test",
+// 			Vendor:  "cisco",
+// 			Type:    "IOS",
+// 			Version: "I86BI_LINUXL2-IPBASEK9-M",
+// 			Address: "192.168.1.244:22",
+// 			Auth: protocol.Auth{
+// 				Username: "admin",
+// 				Password: "r00tme",
+// 			},
+// 			Commands: []string{
+// 				`show version`,
+// 			},
+// 			Protocol: "ssh",
+// 			Mode:     "login_enable",
+// 			EnablePwd: "r00tme",
+// 			Timeout:  30,
+// 		}
+// 		var reply protocol.CliResponse
+// 		c := jsonrpc.NewClient(client)
+// 		err = c.Call("CliHandler.Handle", args, &reply)
+// 		So(
+// 			err,
+// 			ShouldBeNil,
+// 		)
+// 		So(
+// 			reply.Retcode == common.OK,
+// 			ShouldBeTrue,
+// 		)
+// 		So(
+// 			len(reply.CmdsStd) == 1,
+// 			ShouldBeTrue,
+// 		)
+// 	})
+// }
+
+// func TestIos_Set(t *testing.T) {
+
+// 	Convey("set ios cli commands", t, func() {
+// 		client, err := net.Dial("tcp", "localhost:8088")
+// 		So(
+// 			err,
+// 			ShouldBeNil,
+// 		)
+// 		// Synchronous call
+// 		args := &protocol.CliRequest{
+// 			Device:  "ios-set-test",
+// 			Vendor:  "cisco",
+// 			Type:    "IOS",
+// 			Version: "I86BI_LINUXL2-IPBASEK9-M",
+// 			Address: "192.168.1.244:22",
+// 			Auth: protocol.Auth{
+// 				Username: "admin",
+// 				Password: "r00tme",
+// 			},
+// 			Commands: []string{
+// 				`hostname switch`,
+// 			},
+// 			Protocol: "ssh",
+// 			Mode:     "configure_terminal",
+// 			Timeout:  30,
+// 		}
+// 		var reply protocol.CliResponse
+// 		c := jsonrpc.NewClient(client)
+// 		err = c.Call("CliHandler.Handle", args, &reply)
+// 		So(
+// 			err,
+// 			ShouldBeNil,
+// 		)
+// 		So(
+// 			reply.Retcode == common.OK,
+// 			ShouldBeTrue,
+// 		)
+// 		So(
+// 			len(reply.CmdsStd) == 1,
+// 			ShouldBeTrue,
+// 		)
+// 	})
+// }
+
 func TestIos_Show(t *testing.T) {
 
-	Convey("show ios cli commands", t, func() {
+	Convey("show nxos cli commands", t, func() {
 		client, err := net.Dial("tcp", "localhost:8088")
 		So(
 			err,
@@ -485,21 +575,20 @@ func TestIos_Show(t *testing.T) {
 		)
 		// Synchronous call
 		args := &protocol.CliRequest{
-			Device:  "ios-show-test",
+			Device:  "nxos-show-test",
 			Vendor:  "cisco",
-			Type:    "IOS",
-			Version: "I86BI_LINUXL2-IPBASEK9-M",
-			Address: "192.168.1.244:22",
+			Type:    "NX-OS",
+			Version: "7.0(3)I5(2)",
+			Address: "192.168.1.248:22",
 			Auth: protocol.Auth{
 				Username: "admin",
 				Password: "r00tme",
 			},
 			Commands: []string{
-				`show version`,
+				`show aaa accounting`,
 			},
 			Protocol: "ssh",
-			Mode:     "login_enable",
-			EnablePwd: "r00tme",
+			Mode:     "login",
 			Timeout:  30,
 		}
 		var reply protocol.CliResponse
@@ -522,7 +611,7 @@ func TestIos_Show(t *testing.T) {
 
 func TestIos_Set(t *testing.T) {
 
-	Convey("set ios cli commands", t, func() {
+	Convey("set nxos cli commands", t, func() {
 		client, err := net.Dial("tcp", "localhost:8088")
 		So(
 			err,
@@ -530,17 +619,17 @@ func TestIos_Set(t *testing.T) {
 		)
 		// Synchronous call
 		args := &protocol.CliRequest{
-			Device:  "ios-set-test",
+			Device:  "nxos-set-test",
 			Vendor:  "cisco",
-			Type:    "IOS",
-			Version: "I86BI_LINUXL2-IPBASEK9-M",
-			Address: "192.168.1.244:22",
+			Type:    "NX-OS",
+			Version: "7.0(3)I5(2)",
+			Address: "192.168.1.248:22",
 			Auth: protocol.Auth{
 				Username: "admin",
 				Password: "r00tme",
 			},
 			Commands: []string{
-				`hostname switch`,
+				`hostname ab`,
 			},
 			Protocol: "ssh",
 			Mode:     "configure_terminal",
