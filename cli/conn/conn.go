@@ -231,13 +231,6 @@ func (s *CliConn) closePage() error {
 		if _, _, err := s.readBuff(); err != nil {
 			return err;
 		}
-	} else if strings.EqualFold(s.req.Vendor, "cisco") && strings.EqualFold(s.req.Type, "NX-OS") {
-		if _, err := s.writeBuff("terminal length 0"); err != nil {
-			return err;
-		}
-		if _, _, err := s.readBuff(); err != nil {
-			return err;
-		}
 	}
 	return nil;
 }
