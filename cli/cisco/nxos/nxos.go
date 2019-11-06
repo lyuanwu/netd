@@ -59,7 +59,7 @@ func createSwitchNxos() cli.Operator {
 	}
 }
 
-//get SwitchNxos GetPrompts
+//GetPrompts SwitchNxos 
 func (s *SwitchNxos) GetPrompts(k string) []*regexp.Regexp {
 	if v, ok := s.prompts[k]; ok {
 		return v
@@ -67,7 +67,7 @@ func (s *SwitchNxos) GetPrompts(k string) []*regexp.Regexp {
 	return nil
 }
 
-//get SwitchNxos GetTransitions
+//GetTransitions SwitchNxos
 func (s *SwitchNxos) GetTransitions(c, t string) []string {
 	k := c + "->" + t
 	if v, ok := s.transitions[k]; ok {
@@ -76,22 +76,22 @@ func (s *SwitchNxos) GetTransitions(c, t string) []string {
 	return nil
 }
 
-//get SwitchNxos GetErrPatterns
+//GetErrPatterns SwitchNxos
 func (s *SwitchNxos) GetErrPatterns() []*regexp.Regexp {
 	return s.errs
 }
 
-//get SwitchNxos GetLinebreak
+//GetLinebreak SwitchNxos
 func (s *SwitchNxos) GetLinebreak() string {
 	return s.lineBeak
 }
 
-//get SwitchNxos GetStartMode
+//GetStartMode SwitchNxos
 func (s *SwitchNxos) GetStartMode() string {
 	return "login"
 }
 
-//get SwitchNxos GetSSHInitializer
+//GetSSHInitializer SwitchNxos
 func (s *SwitchNxos) GetSSHInitializer() cli.SSHInitializer {
 	return func(c *ssh.Client) (io.Reader, io.WriteCloser, *ssh.Session, error) {
 		var err error

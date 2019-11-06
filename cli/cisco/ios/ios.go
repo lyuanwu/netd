@@ -62,7 +62,7 @@ func createSwitchIos() cli.Operator {
 	}
 }
 
-//get SwitchIos GetPrompts
+//GetPrompts SwitchIos
 func (s *SwitchIos) GetPrompts(k string) []*regexp.Regexp {
 	if v, ok := s.prompts[k]; ok {
 		return v
@@ -70,7 +70,7 @@ func (s *SwitchIos) GetPrompts(k string) []*regexp.Regexp {
 	return nil
 }
 
-//get SwitchIos GetTransitions
+//GetTransitions SwitchIos
 func (s *SwitchIos) GetTransitions(c, t string) []string {
 	k := c + "->" + t
 	if v, ok := s.transitions[k]; ok {
@@ -79,22 +79,22 @@ func (s *SwitchIos) GetTransitions(c, t string) []string {
 	return nil
 }
 
-//get SwitchIos GetErrPatterns
+//GetErrPatterns SwitchIos
 func (s *SwitchIos) GetErrPatterns() []*regexp.Regexp {
 	return s.errs
 }
 
-//get SwitchIos GetLinebreak
+//GetLinebreak SwitchIos
 func (s *SwitchIos) GetLinebreak() string {
 	return s.lineBeak
 }
 
-//get SwitchIos GetStartMode
+//GetStartMode SwitchIos
 func (s *SwitchIos) GetStartMode() string {
 	return "login_or_login_enable"
 }
 
-//get SwitchIos GetSSHInitializer
+//GetSSHInitializer SwitchIos
 func (s *SwitchIos) GetSSHInitializer() cli.SSHInitializer {
 	return func(c *ssh.Client) (io.Reader, io.WriteCloser, *ssh.Session, error) {
 		var err error
