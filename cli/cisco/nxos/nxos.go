@@ -26,20 +26,20 @@ import (
 
 func init() {
 	// register nxos
-	cli.OperatorManagerInstance.Register(`(?i)cisco\.NX-OS\..*`, createNxOs())
+	cli.OperatorManagerInstance.Register(`(?i)cisco\.NX-OS\..*`, createNxosOperator())
 }
 
-type NxOsOperator struct {
+type NxosOperator struct {
 	lineBeak    string // \r\n \n
 	transitions map[string][]string
 	prompts     map[string][]*regexp.Regexp
 	errs        []*regexp.Regexp
 }
 
-func createNxOs() cli.Operator {
+func createNxosOperator() cli.Operator {
 	loginPrompt := regexp.MustCompile(`[[:alnum:]]{1,}(-[[:alnum:]]+){0,}# $`)
 	configTerminalPrompt := regexp.MustCompile(`[[:alnum:]]{1,}(-[[:alnum:]]+){0,}\(config\)# $`)
-	return &NxOsOperator{
+	return &NxosOperator{
 		// mode transition
 		// login -> configure_terminal
 		transitions: map[string][]string{
@@ -52,19 +52,20 @@ func createNxOs() cli.Operator {
 		},
 		errs: []*regexp.Regexp{
 			regexp.MustCompile("^Command authorization failed\\.$"),
-			regexp.MustCompile("^Command rejected:"),
+			regexp.MustCompile("^% "),
+			regexp.MustCompile("^% Invalid command at '\\^' marker\\."),
 		},
 		lineBeak: "\n",
 	}
 }
 
-func (s *NxOsOperator) GetPrompts(k string) []*regexp.Regexp {
+func (s *NxosOperator) GetPrompts(k string) []*regexp.Regexp {
 	if v, ok := s.prompts[k]; ok {
 		return v
 	}
 	return nil
 }
-func (s *NxOsOperator) GetTransitions(c, t string) []string {
+func (s *NxosOperator) GetTransitions(c, t string) []string {
 	k := c + "->" + t
 	if v, ok := s.transitions[k]; ok {
 		return v
@@ -72,19 +73,19 @@ func (s *NxOsOperator) GetTransitions(c, t string) []string {
 	return nil
 }
 
-func (s *NxOsOperator) GetErrPatterns() []*regexp.Regexp {
+func (s *NxosOperator) GetErrPatterns() []*regexp.Regexp {
 	return s.errs
 }
 
-func (s *NxOsOperator) GetLinebreak() string {
+func (s *NxosOperator) GetLinebreak() string {
 	return s.lineBeak
 }
 
-func (s *NxOsOperator) GetStartMode() string {
+func (s *NxosOperator) GetStartMode() string {
 	return "login"
 }
 
-func (s *NxOsOperator) GetSSHInitializer() cli.SSHInitializer {
+func (s *NxosOperator) GetSSHInitializer() cli.SSHInitializer {
 	return func(c *ssh.Client) (io.Reader, io.WriteCloser, *ssh.Session, error) {
 		var err error
 		session, err := c.NewSession()

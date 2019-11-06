@@ -26,21 +26,21 @@ import (
 
 func init() {
 	// register ios
-	cli.OperatorManagerInstance.Register(`(?i)cisco\.ios\..*`, createIos())
+	cli.OperatorManagerInstance.Register(`(?i)cisco\.ios\..*`, createSwitchIos())
 }
 
-type IosOperator struct {
+type SwitchIos struct {
 	lineBeak    string // \r\n \n
 	transitions map[string][]string
 	prompts     map[string][]*regexp.Regexp
 	errs        []*regexp.Regexp
 }
 
-func createIos() cli.Operator {
+func createSwitchIos() cli.Operator {
 	loginPrompt := regexp.MustCompile("^[[:alnum:]._-]+> ?$")
 	loginEnablePrompt := regexp.MustCompile("[[:alnum:]]{1,}(-[[:alnum:]]+){0,}#$")
 	configTerminalPrompt := regexp.MustCompile(`[[:alnum:]]{1,}(-[[:alnum:]]+){0,}\(config\)#$`)
-	return &IosOperator{
+	return &SwitchIos{
 		// mode transition
 		// login_enable -> configure_terminal
 		transitions: map[string][]string{
@@ -62,13 +62,13 @@ func createIos() cli.Operator {
 	}
 }
 
-func (s *IosOperator) GetPrompts(k string) []*regexp.Regexp {
+func (s *SwitchIos) GetPrompts(k string) []*regexp.Regexp {
 	if v, ok := s.prompts[k]; ok {
 		return v
 	}
 	return nil
 }
-func (s *IosOperator) GetTransitions(c, t string) []string {
+func (s *SwitchIos) GetTransitions(c, t string) []string {
 	k := c + "->" + t
 	if v, ok := s.transitions[k]; ok {
 		return v
@@ -76,19 +76,19 @@ func (s *IosOperator) GetTransitions(c, t string) []string {
 	return nil
 }
 
-func (s *IosOperator) GetErrPatterns() []*regexp.Regexp {
+func (s *SwitchIos) GetErrPatterns() []*regexp.Regexp {
 	return s.errs
 }
 
-func (s *IosOperator) GetLinebreak() string {
+func (s *SwitchIos) GetLinebreak() string {
 	return s.lineBeak
 }
 
-func (s *IosOperator) GetStartMode() string {
+func (s *SwitchIos) GetStartMode() string {
 	return "login_or_login_enable"
 }
 
-func (s *IosOperator) GetSSHInitializer() cli.SSHInitializer {
+func (s *SwitchIos) GetSSHInitializer() cli.SSHInitializer {
 	return func(c *ssh.Client) (io.Reader, io.WriteCloser, *ssh.Session, error) {
 		var err error
 		session, err := c.NewSession()
