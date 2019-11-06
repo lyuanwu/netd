@@ -565,7 +565,7 @@ import (
 // 	})
 // }
 
-func TestIos_Show(t *testing.T) {
+func TestNxos_Show(t *testing.T) {
 
 	Convey("show nxos cli commands", t, func() {
 		client, err := net.Dial("tcp", "localhost:8088")
@@ -609,7 +609,7 @@ func TestIos_Show(t *testing.T) {
 	})
 }
 
-func TestIos_Set(t *testing.T) {
+func TestNxos_Set(t *testing.T) {
 
 	Convey("set nxos cli commands", t, func() {
 		client, err := net.Dial("tcp", "localhost:8088")
