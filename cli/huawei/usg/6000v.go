@@ -67,6 +67,7 @@ func (s *opUsg6000V) GetPrompts(k string) []*regexp.Regexp {
 	}
 	return nil
 }
+
 func (s *opUsg6000V) GetTransitions(c, t string) []string {
 	k := c + "->" + t
 	if v, ok := s.transitions[k]; ok {

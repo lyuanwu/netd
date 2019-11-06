@@ -75,6 +75,7 @@ func (s *opJunos) GetPrompts(k string) []*regexp.Regexp {
 	}
 	return nil
 }
+
 func (s *opJunos) GetTransitions(c, t string) []string {
 	k := c + "->" + t
 	if v, ok := s.transitions[k]; ok {

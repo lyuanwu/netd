@@ -25,7 +25,7 @@ import (
 )
 
 func init() {
-	// register ios
+	// register switch ios
 	cli.OperatorManagerInstance.Register(`(?i)cisco\.ios\..*`, createSwitchIos())
 }
 
@@ -68,6 +68,7 @@ func (s *SwitchIos) GetPrompts(k string) []*regexp.Regexp {
 	}
 	return nil
 }
+
 func (s *SwitchIos) GetTransitions(c, t string) []string {
 	k := c + "->" + t
 	if v, ok := s.transitions[k]; ok {
