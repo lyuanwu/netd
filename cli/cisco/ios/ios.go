@@ -28,7 +28,7 @@ func init() {
 	// register switch ios
 	cli.OperatorManagerInstance.Register(`(?i)cisco\.ios\..*`, createSwitchIos())
 }
-//ios switch struct
+//SwitchIos struct
 type SwitchIos struct {
 	lineBeak    string // \r\n \n
 	transitions map[string][]string
@@ -62,7 +62,7 @@ func createSwitchIos() cli.Operator {
 	}
 }
 
-//get ios prompts
+//get SwitchIos prompts
 func (s *SwitchIos) GetPrompts(k string) []*regexp.Regexp {
 	if v, ok := s.prompts[k]; ok {
 		return v
@@ -70,7 +70,7 @@ func (s *SwitchIos) GetPrompts(k string) []*regexp.Regexp {
 	return nil
 }
 
-//get ios transitions
+//get SwitchIos transitions
 func (s *SwitchIos) GetTransitions(c, t string) []string {
 	k := c + "->" + t
 	if v, ok := s.transitions[k]; ok {
@@ -79,22 +79,22 @@ func (s *SwitchIos) GetTransitions(c, t string) []string {
 	return nil
 }
 
-//get ios errpatterns
+//get SwitchIos errpatterns
 func (s *SwitchIos) GetErrPatterns() []*regexp.Regexp {
 	return s.errs
 }
 
-//get ios linebreak
+//get SwitchIos linebreak
 func (s *SwitchIos) GetLinebreak() string {
 	return s.lineBeak
 }
 
-//get ios startmode
+//get SwitchIos startmode
 func (s *SwitchIos) GetStartMode() string {
 	return "login_or_login_enable"
 }
 
-//get ios SSHInitializer
+//get SwitchIos SSHInitializer
 func (s *SwitchIos) GetSSHInitializer() cli.SSHInitializer {
 	return func(c *ssh.Client) (io.Reader, io.WriteCloser, *ssh.Session, error) {
 		var err error

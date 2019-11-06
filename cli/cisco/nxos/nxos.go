@@ -28,7 +28,7 @@ func init() {
 	// register switch nxos
 	cli.OperatorManagerInstance.Register(`(?i)cisco\.NX-OS\..*`, createSwitchNxos())
 }
-//nxos switch struct
+//SwitchNxos struct
 type SwitchNxos struct {
 	lineBeak    string // \r\n \n
 	transitions map[string][]string
@@ -59,7 +59,7 @@ func createSwitchNxos() cli.Operator {
 	}
 }
 
-//get nxos prompts
+//get SwitchNxos prompts
 func (s *SwitchNxos) GetPrompts(k string) []*regexp.Regexp {
 	if v, ok := s.prompts[k]; ok {
 		return v
@@ -67,7 +67,7 @@ func (s *SwitchNxos) GetPrompts(k string) []*regexp.Regexp {
 	return nil
 }
 
-//get nxos Transitions
+//get SwitchNxos Transitions
 func (s *SwitchNxos) GetTransitions(c, t string) []string {
 	k := c + "->" + t
 	if v, ok := s.transitions[k]; ok {
@@ -76,22 +76,22 @@ func (s *SwitchNxos) GetTransitions(c, t string) []string {
 	return nil
 }
 
-//get nxos errpatterns
+//get SwitchNxos errpatterns
 func (s *SwitchNxos) GetErrPatterns() []*regexp.Regexp {
 	return s.errs
 }
 
-//get nxos Linebreak
+//get SwitchNxos Linebreak
 func (s *SwitchNxos) GetLinebreak() string {
 	return s.lineBeak
 }
 
-//get nxos startmode
+//get SwitchNxos startmode
 func (s *SwitchNxos) GetStartMode() string {
 	return "login"
 }
 
-//get nxos SSHInitializer
+//get SwitchNxos Linebreak
 func (s *SwitchNxos) GetSSHInitializer() cli.SSHInitializer {
 	return func(c *ssh.Client) (io.Reader, io.WriteCloser, *ssh.Session, error) {
 		var err error
