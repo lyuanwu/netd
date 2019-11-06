@@ -28,7 +28,7 @@ func init() {
 	// register switch nxos
 	cli.OperatorManagerInstance.Register(`(?i)cisco\.NX-OS\..*`, createSwitchNxos())
 }
-
+//SwitchNxos struct
 type SwitchNxos struct {
 	lineBeak    string // \r\n \n
 	transitions map[string][]string
@@ -59,6 +59,7 @@ func createSwitchNxos() cli.Operator {
 	}
 }
 
+//get SwitchNxos GetPrompts
 func (s *SwitchNxos) GetPrompts(k string) []*regexp.Regexp {
 	if v, ok := s.prompts[k]; ok {
 		return v
@@ -66,6 +67,7 @@ func (s *SwitchNxos) GetPrompts(k string) []*regexp.Regexp {
 	return nil
 }
 
+//get SwitchNxos GetTransitions
 func (s *SwitchNxos) GetTransitions(c, t string) []string {
 	k := c + "->" + t
 	if v, ok := s.transitions[k]; ok {
@@ -74,18 +76,22 @@ func (s *SwitchNxos) GetTransitions(c, t string) []string {
 	return nil
 }
 
+//get SwitchNxos GetErrPatterns
 func (s *SwitchNxos) GetErrPatterns() []*regexp.Regexp {
 	return s.errs
 }
 
+//get SwitchNxos GetLinebreak
 func (s *SwitchNxos) GetLinebreak() string {
 	return s.lineBeak
 }
 
+//get SwitchNxos GetStartMode
 func (s *SwitchNxos) GetStartMode() string {
 	return "login"
 }
 
+//get SwitchNxos GetSSHInitializer
 func (s *SwitchNxos) GetSSHInitializer() cli.SSHInitializer {
 	return func(c *ssh.Client) (io.Reader, io.WriteCloser, *ssh.Session, error) {
 		var err error
