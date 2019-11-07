@@ -13,7 +13,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-package usg
+package ios
 
 import (
 	"fmt"
@@ -25,49 +25,53 @@ import (
 )
 
 func init() {
-	// register HUAWEI USG6000V2
-	cli.OperatorManagerInstance.Register(`(?i)huawei\.usg6000v2\..*`, createopUsg6000V())
+	// register switch ios
+	cli.OperatorManagerInstance.Register(`(?i)cisco\.ios\..*`, createSwitchIos())
 }
-
-type opUsg6000V struct {
+//SwitchIos struct
+type SwitchIos struct {
 	lineBeak    string // \r\n \n
 	transitions map[string][]string
 	prompts     map[string][]*regexp.Regexp
 	errs        []*regexp.Regexp
 }
 
-func createopUsg6000V() cli.Operator {
-	loginPrompt := regexp.MustCompile("^<[[:alnum:]]{1,}[[:digit:]]{1,}[[:alnum:]]{1,}>$")
-	systemViewPrompt := regexp.MustCompile(`^[[[:alnum:]]{1,}[[:digit:]]{1,}[[:alnum:]]{1,}]`)
-	return &opUsg6000V{
+func createSwitchIos() cli.Operator {
+	loginPrompt := regexp.MustCompile("^[[:alnum:]._-]+> ?$")
+	loginEnablePrompt := regexp.MustCompile("[[:alnum:]]{1,}(-[[:alnum:]]+){0,}#$")
+	configTerminalPrompt := regexp.MustCompile(`[[:alnum:]]{1,}(-[[:alnum:]]+){0,}\(config\)#$`)
+	return &SwitchIos{
 		// mode transition
-		// login -> systemView
+		// login_enable -> configure_terminal
 		transitions: map[string][]string{
-			"login->system_View": {"system-view"},
-			"system_View->login": {"quit"},
+			"login_enable->configure_terminal": {"config terminal"},
+			"configure_terminal->login_enable": {"exit"},
 		},
 		prompts: map[string][]*regexp.Regexp{
-			"login":         {loginPrompt},
-			"system_View":    {systemViewPrompt},
+			"login_or_login_enable": {loginPrompt, loginEnablePrompt},
+			"login":                 {loginPrompt},
+			"login_enable":          {loginEnablePrompt},
+			"configure_terminal":    {configTerminalPrompt},
 		},
 		errs: []*regexp.Regexp{
-			regexp.MustCompile("^Error: Unrecognized command found at '\\^' position\\."),
-			regexp.MustCompile("^Error: Wrong parameter found at '\\^' position\\."),
-			regexp.MustCompile("^Error:Incomplete command found at '\\^' position\\."),
-			regexp.MustCompile("^Error:Too many parameters found at '\\^' position\\."),
-			regexp.MustCompile("^Error:Ambiguous command found at '\\^' position\\."),
+			regexp.MustCompile("^Command authorization failed\\.$"),
+			regexp.MustCompile("^% "),
+			regexp.MustCompile("^Command rejected:"),
 		},
 		lineBeak: "\n",
 	}
 }
 
-func (s *opUsg6000V) GetPrompts(k string) []*regexp.Regexp {
+//GetPrompts SwitchIos
+func (s *SwitchIos) GetPrompts(k string) []*regexp.Regexp {
 	if v, ok := s.prompts[k]; ok {
 		return v
 	}
 	return nil
 }
-func (s *opUsg6000V) GetTransitions(c, t string) []string {
+
+//GetTransitions SwitchIos
+func (s *SwitchIos) GetTransitions(c, t string) []string {
 	k := c + "->" + t
 	if v, ok := s.transitions[k]; ok {
 		return v
@@ -75,19 +79,23 @@ func (s *opUsg6000V) GetTransitions(c, t string) []string {
 	return nil
 }
 
-func (s *opUsg6000V) GetErrPatterns() []*regexp.Regexp {
+//GetErrPatterns SwitchIos
+func (s *SwitchIos) GetErrPatterns() []*regexp.Regexp {
 	return s.errs
 }
 
-func (s *opUsg6000V) GetLinebreak() string {
+//GetLinebreak SwitchIos
+func (s *SwitchIos) GetLinebreak() string {
 	return s.lineBeak
 }
 
-func (s *opUsg6000V) GetStartMode() string {
-	return "login"
+//GetStartMode SwitchIos
+func (s *SwitchIos) GetStartMode() string {
+	return "login_or_login_enable"
 }
 
-func (s *opUsg6000V) GetSSHInitializer() cli.SSHInitializer {
+//GetSSHInitializer SwitchIos
+func (s *SwitchIos) GetSSHInitializer() cli.SSHInitializer {
 	return func(c *ssh.Client) (io.Reader, io.WriteCloser, *ssh.Session, error) {
 		var err error
 		session, err := c.NewSession()

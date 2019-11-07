@@ -48,6 +48,8 @@ func createOpScreenOS() cli.Operator {
 			regexp.MustCompile("\\^-+unknown keyword .+"),
 			regexp.MustCompile("\\^-+command not completed"),
 			regexp.MustCompile(": Duplicate entry"),
+			regexp.MustCompile("^Service: Not found"),
+			regexp.MustCompile("^Failed command -"),
 		},
 		lineBeak: "\n",
 	}
@@ -59,6 +61,7 @@ func (s *opScreenOS) GetPrompts(k string) []*regexp.Regexp {
 	}
 	return nil
 }
+
 func (s *opScreenOS) GetTransitions(c, t string) []string {
 	k := c + "->" + t
 	if v, ok := s.transitions[k]; ok {
