@@ -39,3 +39,10 @@ type Auth struct {
 	Username string `json:"Username"`
 	Password string `json:"Password"`
 }
+
+// CliResponse ...
+type CliResponse struct {
+	Retcode int
+	Message string
+	CmdsStd map[string]string
+}
