@@ -185,23 +185,18 @@ func (s *CliConn) init() error {
 						s.mode = "login"
 						return fmt.Errorf("readBuff after enable err, %s", err)
 					}
-					if s.req.Vendor == "cisco" && s.req.Type == "asa" {
-						// ===config or normal both ok===
-						// set terminal pager
-						if _, err := s.writeBuff("terminal pager 0"); err != nil {
-							return err
-						}
-						if _, _, err := s.readBuff(); err != nil {
-							return err
-						}
-						// set page lines
-						if _, err := s.writeBuff("terminal pager lines 0"); err != nil {
-							return err
-						}
-						if _, _, err := s.readBuff(); err != nil {
-							return err
-						}
-						// ==============================
+					if err := s.closePage(); err != nil {
+						return err;
+					}
+				}
+			} else if s.mode == "login" {
+				if strings.EqualFold(s.req.Vendor, "Paloalto") && strings.EqualFold(s.req.Type, "Pan-os") {
+					// set pager
+					if _, err := s.writeBuff("set cli pager off"); err != nil {
+						return err
+					}
+					if _, _, err := s.readBuff(); err != nil {
+						return err
 					}
 				}
 			}
@@ -209,6 +204,35 @@ func (s *CliConn) init() error {
 	}
 	s.heartbeat()
 	return nil
+}
+
+func (s *CliConn) closePage() error {
+	if strings.EqualFold(s.req.Vendor, "cisco") && strings.EqualFold(s.req.Type, "asa") {
+		// ===config or normal both ok===
+		// set terminal pager
+		if _, err := s.writeBuff("terminal pager 0"); err != nil {
+			return err
+		}
+		if _, _, err := s.readBuff(); err != nil {
+			return err
+		}
+		// set page lines
+		if _, err := s.writeBuff("terminal pager lines 0"); err != nil {
+			return err
+		}
+		if _, _, err := s.readBuff(); err != nil {
+			return err
+		}
+		// ==============================
+	} else if strings.EqualFold(s.req.Vendor, "cisco") && strings.EqualFold(s.req.Type, "ios") {
+		if _, err := s.writeBuff("terminal length 0"); err != nil {
+			return err;
+		}
+		if _, _, err := s.readBuff(); err != nil {
+			return err;
+		}
+	}
+	return nil;
 }
 
 // Close cli conn
@@ -296,7 +320,7 @@ func (s *CliConn) readLines() *readBuffOut {
 		lastLine = s.findLastLine(waitingString + current)
 		matches := s.anyPatternMatches(lastLine, s.op.GetPrompts(s.mode))
 		if len(matches) > 0 {
-			logs.Info(s.req.LogPrefix, s.mode, ":", matches)
+			logs.Info(s.req.LogPrefix, "prompt matched", s.mode, ":", matches)
 			waitingString = strings.TrimSuffix(waitingString+current, matches[0])
 			break
 		}

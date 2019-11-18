@@ -24,8 +24,12 @@ import (
 	"github.com/sky-cloud-tec/netd/cli"
 	_ "github.com/sky-cloud-tec/netd/cli/cisco/asa" // load juniper srx
 	"github.com/sky-cloud-tec/netd/cli/conn"
-	_ "github.com/sky-cloud-tec/netd/cli/juniper/srx" // load cisco asa
-	_ "github.com/sky-cloud-tec/netd/cli/juniper/ssg" // load juniper ssg
+	_ "github.com/sky-cloud-tec/netd/cli/juniper/srx"    // load cisco asa
+	_ "github.com/sky-cloud-tec/netd/cli/juniper/ssg"    // load juniper ssg
+	_ "github.com/sky-cloud-tec/netd/cli/paloalto/panos" // load paloalto panos
+	_ "github.com/sky-cloud-tec/netd/cli/huawei/usg" // load huawei USG
+	_ "github.com/sky-cloud-tec/netd/cli/cisco/ios" // load cisco switch ios
+	_ "github.com/sky-cloud-tec/netd/cli/cisco/nxos" // load cisco switch nxos
 	"github.com/sky-cloud-tec/netd/common"
 	"github.com/sky-cloud-tec/netd/protocol"
 	"github.com/songtianyi/rrframework/logs"
@@ -80,7 +84,7 @@ func doHandle(req *protocol.CliRequest, res *protocol.CliResponse) error {
 	if op == nil {
 		logs.Error(req.LogPrefix, "no operator match", t)
 		*res = makeCliErrRes(common.ErrNoOpFound, "no operator match "+t)
-		return nil
+		return nil 
 	}
 	// acquire cli connection, it could be blocked here for concurrency
 	c, err := conn.Acquire(req, op)

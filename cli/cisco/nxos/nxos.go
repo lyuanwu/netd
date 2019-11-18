@@ -13,7 +13,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-package srx
+package nxos
 
 import (
 	"fmt"
@@ -25,58 +25,50 @@ import (
 )
 
 func init() {
-	// register srx 6.x
-	cli.OperatorManagerInstance.Register(`(?i)juniper\.v?srx\..*`, createOpJunos())
+	// register switch nxos
+	cli.OperatorManagerInstance.Register(`(?i)cisco\.NX-OS\..*`, createSwitchNxos())
 }
-
-type opJunos struct {
+//SwitchNxos struct
+type SwitchNxos struct {
 	lineBeak    string // \r\n \n
 	transitions map[string][]string
 	prompts     map[string][]*regexp.Regexp
 	errs        []*regexp.Regexp
 }
 
-func createOpJunos() cli.Operator {
-	loginPrompt := regexp.MustCompile("^[[:alnum:]_]{1,}[.]{0,1}[[:alnum:]_-]{0,}@[[:alnum:]._-]+> $")
-	configPrompt := regexp.MustCompile("^[[:alnum:]_]{1,}[.]{0,1}[[:alnum:]_-]{0,}@[[:alnum:]._-]+# $")
-	return &opJunos{
+func createSwitchNxos() cli.Operator {
+	loginPrompt := regexp.MustCompile(`[[:alnum:]]{1,}(-[[:alnum:]]+){0,}# $`)
+	configTerminalPrompt := regexp.MustCompile(`[[:alnum:]]{1,}(-[[:alnum:]]+){0,}\(config\)# $`)
+	return &SwitchNxos{
 		// mode transition
-		// login -> configure_private
-		// login -> configure_exclusive
-		// login -> configure
+		// login -> configure_terminal
 		transitions: map[string][]string{
-			"login->configure_private":   {"configure private"},
-			"configure_private->login":   {"exit"},
-			"login->configure_exclusive": {"configure exclusive"},
-			"configure_exclusive->login": {"exit"},
-			"login->configure":           {"configure"},
-			"configure->login":           {"exit"},
+			"login->configure_terminal": {"configure"},
+			"configure_terminal->login": {"exit"},
 		},
 		prompts: map[string][]*regexp.Regexp{
-			"login":               {loginPrompt},
-			"configure":           {configPrompt},
-			"configure_private":   {configPrompt},
-			"configure_exclusive": {configPrompt},
+			"login":                 {loginPrompt},
+			"configure_terminal":    {configTerminalPrompt},
 		},
 		errs: []*regexp.Regexp{
-			regexp.MustCompile("^syntax error\\.$"),
-			regexp.MustCompile("^unknown command\\.$"),
-			regexp.MustCompile("^missing argument\\.$"),
-			regexp.MustCompile("\\^$"),
-			regexp.MustCompile("^error:"),
+			regexp.MustCompile("^Command authorization failed\\.$"),
+			regexp.MustCompile("^% "),
+			regexp.MustCompile("^% Invalid command at '\\^' marker\\."),
 		},
 		lineBeak: "\n",
 	}
 }
 
-func (s *opJunos) GetPrompts(k string) []*regexp.Regexp {
+//GetPrompts SwitchNxos 
+func (s *SwitchNxos) GetPrompts(k string) []*regexp.Regexp {
 	if v, ok := s.prompts[k]; ok {
 		return v
 	}
 	return nil
 }
 
-func (s *opJunos) GetTransitions(c, t string) []string {
+//GetTransitions SwitchNxos
+func (s *SwitchNxos) GetTransitions(c, t string) []string {
 	k := c + "->" + t
 	if v, ok := s.transitions[k]; ok {
 		return v
@@ -84,19 +76,23 @@ func (s *opJunos) GetTransitions(c, t string) []string {
 	return nil
 }
 
-func (s *opJunos) GetErrPatterns() []*regexp.Regexp {
+//GetErrPatterns SwitchNxos
+func (s *SwitchNxos) GetErrPatterns() []*regexp.Regexp {
 	return s.errs
 }
 
-func (s *opJunos) GetLinebreak() string {
+//GetLinebreak SwitchNxos
+func (s *SwitchNxos) GetLinebreak() string {
 	return s.lineBeak
 }
 
-func (s *opJunos) GetStartMode() string {
+//GetStartMode SwitchNxos
+func (s *SwitchNxos) GetStartMode() string {
 	return "login"
 }
 
-func (s *opJunos) GetSSHInitializer() cli.SSHInitializer {
+//GetSSHInitializer SwitchNxos
+func (s *SwitchNxos) GetSSHInitializer() cli.SSHInitializer {
 	return func(c *ssh.Client) (io.Reader, io.WriteCloser, *ssh.Session, error) {
 		var err error
 		session, err := c.NewSession()
@@ -113,6 +109,12 @@ func (s *opJunos) GetSSHInitializer() cli.SSHInitializer {
 		if err != nil {
 			session.Close()
 			return nil, nil, nil, fmt.Errorf("create stdin pipe failed, %s", err)
+		}
+		modes := ssh.TerminalModes{
+			ssh.ECHO: 1, // enable echoing
+		}
+		if err := session.RequestPty("vt100", 0, 2000, modes); err != nil {
+			return nil, nil, nil, fmt.Errorf("request pty failed, %s", err)
 		}
 		if err := session.Shell(); err != nil {
 			session.Close()
