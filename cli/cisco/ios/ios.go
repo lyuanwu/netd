@@ -28,6 +28,7 @@ func init() {
 	// register switch ios
 	cli.OperatorManagerInstance.Register(`(?i)cisco\.ios\..*`, createSwitchIos())
 }
+
 //SwitchIos struct
 type SwitchIos struct {
 	lineBeak    string // \r\n \n

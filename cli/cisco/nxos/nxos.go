@@ -28,6 +28,7 @@ func init() {
 	// register switch nxos
 	cli.OperatorManagerInstance.Register(`(?i)cisco\.NX-OS\..*`, createSwitchNxos())
 }
+
 //SwitchNxos struct
 type SwitchNxos struct {
 	lineBeak    string // \r\n \n
@@ -47,8 +48,8 @@ func createSwitchNxos() cli.Operator {
 			"configure_terminal->login": {"exit"},
 		},
 		prompts: map[string][]*regexp.Regexp{
-			"login":                 {loginPrompt},
-			"configure_terminal":    {configTerminalPrompt},
+			"login":              {loginPrompt},
+			"configure_terminal": {configTerminalPrompt},
 		},
 		errs: []*regexp.Regexp{
 			regexp.MustCompile("^Command authorization failed\\.$"),
@@ -59,7 +60,7 @@ func createSwitchNxos() cli.Operator {
 	}
 }
 
-//GetPrompts SwitchNxos 
+//GetPrompts SwitchNxos
 func (s *SwitchNxos) GetPrompts(k string) []*regexp.Regexp {
 	if v, ok := s.prompts[k]; ok {
 		return v
