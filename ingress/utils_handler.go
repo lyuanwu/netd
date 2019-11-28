@@ -54,7 +54,6 @@ func (s *UtilsHandler) CheckPort(req *protocol.PortCheckRequest, res *protocol.P
 
 	go func() {
 		logs.Info(req.LogPrefix, "==========START==========")
-		ch <- doHandle(req, res)
 		logs.Info(req.LogPrefix, "==========END==========")
 	}()
 
@@ -63,8 +62,12 @@ func (s *UtilsHandler) CheckPort(req *protocol.PortCheckRequest, res *protocol.P
 	case res := <-ch:
 		return res
 	case <-time.After(req.Timeout):
-		*res = makeCliErrRes(common.ErrNoOpFound, "handle req timeout")
+		*res = makeUtilsErrRes(common.ErrNoOpFound, "handle req timeout")
 	}
 
 	return nil
+}
+
+func makeUtilsErrRes(code int, msg string) protocol.PortCheckResponse {
+	return protocol.PortCheckResponse{Retcode: code, Message: msg}
 }
