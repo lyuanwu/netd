@@ -4,7 +4,6 @@
 
 #### how to run
 ```
-go get -t ./...
 go build .
 ./netd  --loglevel DEBUG jrpc
 ```
@@ -41,7 +40,6 @@ check [jrpc test](https://github.com/sky-cloud-tec/netd/blob/master/ingress/jrpc
         * configure
         * configure_private
         * configure_exclusive
-
 * cisco
 
 #### device support list
