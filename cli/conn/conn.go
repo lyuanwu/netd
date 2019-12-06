@@ -186,7 +186,7 @@ func (s *CliConn) init() error {
 						return fmt.Errorf("readBuff after enable err, %s", err)
 					}
 					if err := s.closePage(); err != nil {
-						return err;
+						return err
 					}
 				}
 			} else if s.mode == "login" {
@@ -226,13 +226,13 @@ func (s *CliConn) closePage() error {
 		// ==============================
 	} else if strings.EqualFold(s.req.Vendor, "cisco") && strings.EqualFold(s.req.Type, "ios") {
 		if _, err := s.writeBuff("terminal length 0"); err != nil {
-			return err;
+			return err
 		}
 		if _, _, err := s.readBuff(); err != nil {
-			return err;
+			return err
 		}
 	}
-	return nil;
+	return nil
 }
 
 // Close cli conn

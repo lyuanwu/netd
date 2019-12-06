@@ -47,8 +47,8 @@ func createopUsg6000V() cli.Operator {
 			"system_View->login": {"quit"},
 		},
 		prompts: map[string][]*regexp.Regexp{
-			"login":         {loginPrompt},
-			"system_View":    {systemViewPrompt},
+			"login":       {loginPrompt},
+			"system_View": {systemViewPrompt},
 		},
 		errs: []*regexp.Regexp{
 			regexp.MustCompile("^Error: Unrecognized command found at '\\^' position\\."),

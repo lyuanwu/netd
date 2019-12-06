@@ -402,7 +402,7 @@ import (
 // 				Password: "admin@123",
 // 			},
 // 			Commands: []string{
-// 				`security-policy 
+// 				`security-policy
 // 				rule name policy_test
 // 				destination-address 10.1.1.1 24
 // 				destination-address 3000::1 32

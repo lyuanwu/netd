@@ -4,7 +4,6 @@
 
 #### how to run
 ```
-go get -t ./...
 go build .
 ./netd  --loglevel DEBUG jrpc
 ```
@@ -23,7 +22,7 @@ go build .
 			Username: "xx",
 			Password: "xx",
 		},
-		Commands: []string{"set security address-book global address WS-100.2.2.46_32 wildcard-address 100.2.2.46/32"},
+		Commands: []string{"set security address-book global address WS-100.2.2.46_32 wildcard-address 100.2.2.46/255.255.255.255"},
 		Protocol: "ssh",
 		Mode:     "configure_private",
 		Timeout:  30, // seconds
@@ -41,7 +40,6 @@ check [jrpc test](https://github.com/sky-cloud-tec/netd/blob/master/ingress/jrpc
         * configure
         * configure_private
         * configure_exclusive
-
 * cisco
 
 #### device support list
