@@ -30,6 +30,7 @@ import (
 	_ "github.com/sky-cloud-tec/netd/cli/huawei/usg" // load huawei USG
 	_ "github.com/sky-cloud-tec/netd/cli/cisco/ios" // load cisco switch ios
 	_ "github.com/sky-cloud-tec/netd/cli/cisco/nxos" // load cisco switch nxos
+	_ "github.com/sky-cloud-tec/netd/cli/dptech"
 	"github.com/sky-cloud-tec/netd/common"
 	"github.com/sky-cloud-tec/netd/protocol"
 	"github.com/songtianyi/rrframework/logs"
