@@ -30,7 +30,7 @@ import (
 	_ "github.com/sky-cloud-tec/netd/cli/paloalto/panos" // load paloalto panos
 	_ "github.com/sky-cloud-tec/netd/cli/cisco/ios" // load cisco switch ios
 	_ "github.com/sky-cloud-tec/netd/cli/cisco/nxos" // load cisco switch nxos
-	_ "github.com/sky-cloud-tec/netd/cli/dptech"     // load dptech fw1000
+	_ "github.com/sky-cloud-tec/netd/cli/dptech/fw1000"     // load dptech fw1000
 
 	"github.com/sky-cloud-tec/netd/common"
 	"github.com/sky-cloud-tec/netd/protocol"

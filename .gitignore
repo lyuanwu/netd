@@ -4,3 +4,5 @@ netd.exe
 netd*.log
 .vscode
 ingress/debug.test
+go.mod
+go.sum
