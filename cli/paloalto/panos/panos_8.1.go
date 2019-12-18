@@ -66,6 +66,7 @@ func (s *oppaloalto) GetPrompts(k string) []*regexp.Regexp {
 	}
 	return nil
 }
+
 func (s *oppaloalto) GetTransitions(c, t string) []string {
 	k := c + "->" + t
 	if v, ok := s.transitions[k]; ok {

@@ -13,7 +13,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-package usg
+package dptech
 
 import (
 	"fmt"
@@ -25,50 +25,46 @@ import (
 )
 
 func init() {
-	// register HUAWEI USG6000V2
-	cli.OperatorManagerInstance.Register(`(?i)huawei\.usg\..*`, createopUsg6000V())
+	// register dptech fw1000
+	cli.OperatorManagerInstance.Register(`(?i)dptech\.fw1000\..*`, createopFW1000())
 }
 
-type opUsg6000V struct {
+type opFW1000 struct {
 	lineBeak    string // \r\n \n
 	transitions map[string][]string
 	prompts     map[string][]*regexp.Regexp
 	errs        []*regexp.Regexp
 }
 
-func createopUsg6000V() cli.Operator {
-	loginPrompt := regexp.MustCompile("^<[[:alnum:]]{1,}[[:digit:]]{1,}[[:alnum:]]{1,}>$")
-	systemViewPrompt := regexp.MustCompile(`^[[[:alnum:]]{1,}[[:digit:]]{1,}[[:alnum:]]{1,}]`)
-	return &opUsg6000V{
+func createopFW1000() cli.Operator {
+	loginPrompt := regexp.MustCompile("<[[:alnum:]-_.]+>")
+	configurePrompt := regexp.MustCompile(`[[[:alnum:]-_.]+]`)
+	return &opFW1000{
 		// mode transition
-		// login -> systemView
+		// login -> configure
 		transitions: map[string][]string{
-			"login->system_View": {"system-view"},
-			"system_View->login": {"quit"},
+			"login->configure": {"conf-mode"},
+			"configure->login": {"end"},
 		},
 		prompts: map[string][]*regexp.Regexp{
-			"login":       {loginPrompt},
-			"system_View": {systemViewPrompt},
+			"login":         {loginPrompt},
+			"configure":    {configurePrompt},
 		},
 		errs: []*regexp.Regexp{
-			regexp.MustCompile("^Error: Unrecognized command found at '\\^' position\\."),
-			regexp.MustCompile("^Error: Wrong parameter found at '\\^' position\\."),
-			regexp.MustCompile("^Error:Incomplete command found at '\\^' position\\."),
-			regexp.MustCompile("^Error:Too many parameters found at '\\^' position\\."),
-			regexp.MustCompile("^Error:Ambiguous command found at '\\^' position\\."),
+			regexp.MustCompile("% Unknown command\\."),
 		},
 		lineBeak: "\n",
 	}
 }
 
-func (s *opUsg6000V) GetPrompts(k string) []*regexp.Regexp {
+func (s *opFW1000) GetPrompts(k string) []*regexp.Regexp {
 	if v, ok := s.prompts[k]; ok {
 		return v
 	}
 	return nil
 }
 
-func (s *opUsg6000V) GetTransitions(c, t string) []string {
+func (s *opFW1000) GetTransitions(c, t string) []string {
 	k := c + "->" + t
 	if v, ok := s.transitions[k]; ok {
 		return v
@@ -76,19 +72,19 @@ func (s *opUsg6000V) GetTransitions(c, t string) []string {
 	return nil
 }
 
-func (s *opUsg6000V) GetErrPatterns() []*regexp.Regexp {
+func (s *opFW1000) GetErrPatterns() []*regexp.Regexp {
 	return s.errs
 }
 
-func (s *opUsg6000V) GetLinebreak() string {
+func (s *opFW1000) GetLinebreak() string {
 	return s.lineBeak
 }
 
-func (s *opUsg6000V) GetStartMode() string {
+func (s *opFW1000) GetStartMode() string {
 	return "login"
 }
 
-func (s *opUsg6000V) GetSSHInitializer() cli.SSHInitializer {
+func (s *opFW1000) GetSSHInitializer() cli.SSHInitializer {
 	return func(c *ssh.Client) (io.Reader, io.WriteCloser, *ssh.Session, error) {
 		var err error
 		session, err := c.NewSession()
