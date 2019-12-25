@@ -26,7 +26,7 @@ import (
 
 func init() {
 	// register asa 9.x+
-	cli.OperatorManagerInstance.Register(`(?i)cisco\.asa\.(9|[0-9]{1,})\..*`, createOp9xPlus())
+	cli.OperatorManagerInstance.Register(`(?i)cisco\.asa[a-z]{0,}\.(9|[0-9]{1,})\..*`, createOp9xPlus())
 }
 
 type op9xPlus struct {

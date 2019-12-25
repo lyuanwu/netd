@@ -107,6 +107,7 @@ func doHandle(req *protocol.CliRequest, res *protocol.CliResponse) error {
 	*res = protocol.CliResponse{
 		Retcode: common.OK,
 		Message: "OK",
+		Device: req.Device,
 		CmdsStd: out,
 	}
 	return nil
