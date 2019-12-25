@@ -306,18 +306,25 @@ func (s *CliConn) readLines() *readBuffOut {
 	buf := make([]byte, 1000)
 	var (
 		waitingString, lastLine string
+		errRes                  error
 	)
 	for {
 		n, err := s.read(buf) //this reads the ssh/telnet terminal
 		if err != nil {
 			// something wrong
 			logs.Error(s.req.LogPrefix, "io.Reader read error,", err)
+			errRes = err
 			break
 		}
 		// for every line
 		current := string(buf[:n])
 		logs.Debug(s.req.LogPrefix, "(", n, ")", current)
 		lastLine = s.findLastLine(waitingString + current)
+		if s.op.GetPrompts(s.mode) == nil {
+			logs.Error(s.req.LogPrefix, "no patterns for mode", s.mode)
+			errRes = fmt.Errorf("%s no patterns for mode %s", s.req.LogPrefix, s.mode)
+			break
+		}
 		matches := s.anyPatternMatches(lastLine, s.op.GetPrompts(s.mode))
 		if len(matches) > 0 {
 			logs.Info(s.req.LogPrefix, "prompt matched", s.mode, ":", matches)
@@ -328,7 +335,7 @@ func (s *CliConn) readLines() *readBuffOut {
 		waitingString += current
 	}
 	return &readBuffOut{
-		nil,
+		errRes,
 		waitingString,
 		lastLine,
 	}
