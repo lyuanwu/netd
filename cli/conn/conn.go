@@ -207,7 +207,7 @@ func (s *CliConn) init() error {
 }
 
 func (s *CliConn) closePage() error {
-	if strings.EqualFold(s.req.Vendor, "cisco") && strings.EqualFold(s.req.Type, "asav") {
+	if strings.EqualFold(s.req.Vendor, "cisco") && (strings.EqualFold(s.req.Type, "asa") || strings.EqualFold(s.req.Type, "asav")) {
 		// ===config or normal both ok===
 		// set terminal pager
 		if _, err := s.writeBuff("terminal pager 0"); err != nil {
