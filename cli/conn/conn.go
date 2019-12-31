@@ -152,6 +152,7 @@ func (s *CliConn) heartbeat() {
 			}
 		}
 	}()
+	
 }
 
 func (s *CliConn) init() error {
@@ -162,7 +163,9 @@ func (s *CliConn) init() error {
 		if err != nil {
 			return err
 		}
-
+		if s.req.Mode == "" {
+			s.mode = s.op.GetStartMode();
+		}
 		// read login prompt
 		_, prompt, err := s.readBuff()
 		if err != nil {
@@ -189,15 +192,34 @@ func (s *CliConn) init() error {
 						return err
 					}
 				}
-			} else if s.mode == "login" {
-				if strings.EqualFold(s.req.Vendor, "Paloalto") && strings.EqualFold(s.req.Type, "Pan-os") {
-					// set pager
-					if _, err := s.writeBuff("set cli pager off"); err != nil {
+			}
+		}  else if s.mode == "login" {
+			if strings.EqualFold(s.req.Vendor, "Paloalto") && strings.EqualFold(s.req.Type, "PAN-OS") {
+				// set format
+				if s.req.Format != "" && len(s.req.Format) > 0 {
+					if _, err := s.writeBuff("set cli config-output-format " + s.req.Format); err != nil {
 						return err
 					}
 					if _, _, err := s.readBuff(); err != nil {
-						return err
-					}
+        	                                return err
+	                                }
+
+				}
+				// set pager
+				if _, err := s.writeBuff("set cli pager off"); err != nil {
+					return err
+				}
+				if _, _, err := s.readBuff(); err != nil {
+					return err
+				}
+			}
+			if strings.EqualFold(s.req.Vendor, "hillstone") && strings.EqualFold(s.req.Type, "SG-6000-VM01") {
+				// set pager
+				if _, err := s.writeBuff("terminal length 0"); err != nil {
+					return err
+				}
+				if _, _, err := s.readBuff(); err != nil {
+					return err
 				}
 			}
 		}
