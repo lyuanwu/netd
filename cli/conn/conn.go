@@ -152,7 +152,6 @@ func (s *CliConn) heartbeat() {
 			}
 		}
 	}()
-	
 }
 
 func (s *CliConn) init() error {
@@ -193,7 +192,7 @@ func (s *CliConn) init() error {
 					}
 				}
 			}
-		}  else if s.mode == "login" {
+		}  else {
 			if strings.EqualFold(s.req.Vendor, "Paloalto") && strings.EqualFold(s.req.Type, "PAN-OS") {
 				// set format
 				if s.req.Format != "" && len(s.req.Format) > 0 {
