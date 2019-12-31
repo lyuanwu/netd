@@ -717,7 +717,7 @@ func TestHillstone_set(t *testing.T) {
 				Password: "r00tme",
 			},
 			Commands: []string{
-				`show configuration`,
+				`hostname hillstone`,
 			},
 			Protocol: "ssh",
 			Mode:     "configure",

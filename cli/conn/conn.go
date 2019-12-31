@@ -195,7 +195,7 @@ func (s *CliConn) init() error {
 		}  else {
 			if strings.EqualFold(s.req.Vendor, "Paloalto") && strings.EqualFold(s.req.Type, "PAN-OS") {
 				// set format
-				if s.req.Format != "" && len(s.req.Format) > 0 {
+				if s.req.Format != "" {
 					if _, err := s.writeBuff("set cli config-output-format " + s.req.Format); err != nil {
 						return err
 					}
