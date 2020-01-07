@@ -29,7 +29,6 @@ type CliRequest struct {
 	Address   string        `json:"address"`   // host:port eg. 192.168.1.101:22
 	Commands  []string      `json:"commands"`  // cli commands
 	Format    string        `json:"format"`    //req format like xml,set
-	Domain    string	`json:"domain"`    //req fortinet need
 	Timeout   time.Duration `json:"timeout"`   // req timeout setting
 	LogPrefix string        `json:"logPrefix"` // log prefix
 	EnablePwd string        `json:"enablePwd"` // enable password for cisco devices
@@ -46,6 +45,6 @@ type Auth struct {
 type CliResponse struct {
 	Retcode int
 	Message string
-	Device 	string
+	Device  string
 	CmdsStd map[string]string
 }

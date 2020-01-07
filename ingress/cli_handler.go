@@ -22,16 +22,16 @@ import (
 	"github.com/songtianyi/rrframework/utils"
 
 	"github.com/sky-cloud-tec/netd/cli"
-	_ "github.com/sky-cloud-tec/netd/cli/cisco/asa"        // load juniper srx
+	_ "github.com/sky-cloud-tec/netd/cli/cisco/asa"  // load juniper srx
+	_ "github.com/sky-cloud-tec/netd/cli/cisco/ios"  // load cisco switch ios
+	_ "github.com/sky-cloud-tec/netd/cli/cisco/nxos" // load cisco switch nxos
 	"github.com/sky-cloud-tec/netd/cli/conn"
+	_ "github.com/sky-cloud-tec/netd/cli/dptech/fw1000"    // load dptech fw1000
+	_ "github.com/sky-cloud-tec/netd/cli/hillstone/sg6000" // load hillstone SG6000
 	_ "github.com/sky-cloud-tec/netd/cli/huawei/usg"       // load huawei USG
 	_ "github.com/sky-cloud-tec/netd/cli/juniper/srx"      // load cisco asa
 	_ "github.com/sky-cloud-tec/netd/cli/juniper/ssg"      // load juniper ssg
 	_ "github.com/sky-cloud-tec/netd/cli/paloalto/panos"   // load paloalto panos
-	_ "github.com/sky-cloud-tec/netd/cli/cisco/ios"        // load cisco switch ios
-	_ "github.com/sky-cloud-tec/netd/cli/cisco/nxos"       // load cisco switch nxos
-	_ "github.com/sky-cloud-tec/netd/cli/dptech/fw1000"    // load dptech fw1000
-	_ "github.com/sky-cloud-tec/netd/cli/hillstone/sg6000" // load hillstone SG6000
 
 	"github.com/sky-cloud-tec/netd/common"
 	"github.com/sky-cloud-tec/netd/protocol"
@@ -108,7 +108,7 @@ func doHandle(req *protocol.CliRequest, res *protocol.CliResponse) error {
 	*res = protocol.CliResponse{
 		Retcode: common.OK,
 		Message: "OK",
-		Device: req.Device,
+		Device:  req.Device,
 		CmdsStd: out,
 	}
 	return nil

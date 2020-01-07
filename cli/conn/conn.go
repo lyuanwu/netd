@@ -158,7 +158,7 @@ func (s *CliConn) init() error {
 	if s.t == common.SSHConn {
 		f := s.op.GetSSHInitializer()
 		var err error
-		s.r, s.w, s.session, err = f(s.client,s.req)
+		s.r, s.w, s.session, err = f(s.client, s.req)
 		if err != nil {
 			return err
 		}
