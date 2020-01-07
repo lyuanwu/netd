@@ -158,12 +158,12 @@ func (s *CliConn) init() error {
 	if s.t == common.SSHConn {
 		f := s.op.GetSSHInitializer()
 		var err error
-		s.r, s.w, s.session, err = f(s.client)
+		s.r, s.w, s.session, err = f(s.client,s.req)
 		if err != nil {
 			return err
 		}
 		if s.req.Mode == "" {
-			s.mode = s.op.GetStartMode();
+			s.mode = s.op.GetStartMode()
 		}
 		// read login prompt
 		_, prompt, err := s.readBuff()
@@ -192,7 +192,7 @@ func (s *CliConn) init() error {
 					}
 				}
 			}
-		}  else {
+		} else {
 			if strings.EqualFold(s.req.Vendor, "Paloalto") && strings.EqualFold(s.req.Type, "PAN-OS") {
 				// set format
 				if s.req.Format != "" {
@@ -200,8 +200,8 @@ func (s *CliConn) init() error {
 						return err
 					}
 					if _, _, err := s.readBuff(); err != nil {
-        	                                return err
-	                                }
+						return err
+					}
 
 				}
 				// set pager
