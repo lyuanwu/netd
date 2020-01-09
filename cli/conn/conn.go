@@ -202,21 +202,15 @@ func (s *CliConn) init() error {
 			if strings.EqualFold(s.req.Vendor, "fortinet") && strings.EqualFold(s.req.Type, "fortigate") {
 				if pts := s.op.GetPrompts(s.req.Mode); pts != nil {
 					//no vdom
-					if strings.Contains(pts[0].String(), s.req.Mode) {
-						// set console
-						if _, err := s.writeBuff("config system console\n\tset output standard\nend"); err != nil {
-							return err
-						}
-						return nil
+					if !strings.Contains(pts[0].String(), s.req.Mode) {
+						return closePage()
 					}
 					logs.Debug("entering domain global...")
 					if _, err := s.writeBuff("config global"); err != nil {
 						return err
 					}
-					if _, err := s.writeBuff("config system console\n\tset output standard\nend"); err != nil {
-						return err
-					}
-					if !strings.Contains(pts[0].String(), s.req.Mode) {
+					closePage()
+					if strings.Contains(pts[0].String(), s.req.Mode) {
 						logs.Debug("entering domain " + s.req.Mode + "...")
 						if _, err := s.writeBuff("config vdom"); err != nil {
 							return err
@@ -262,6 +256,11 @@ func (s *CliConn) closePage() error {
 	} else if strings.EqualFold(s.req.Vendor, "hillstone") && strings.EqualFold(s.req.Type, "SG-6000-VM01") {
 		// set pager
 		if _, err := s.writeBuff("terminal length 0"); err != nil {
+			return err
+		}
+	} else if strings.EqualFold(s.req.Vendor, "fortinet") && strings.EqualFold(s.req.Type, "fortigate") {
+		// set console
+		if _, err := s.writeBuff("config system console\n\tset output standard\nend"); err != nil {
 			return err
 		}
 	}
