@@ -208,13 +208,15 @@ func (s *CliConn) init() error {
 				if pts := s.op.GetPrompts(s.req.Mode); pts != nil {
 					//no vdom
 					if !strings.Contains(pts[0].String(), s.req.Mode) {
-						return closePage()
+						return s.closePage()
 					}
 					logs.Debug("entering domain global...")
 					if _, err := s.writeBuff("config global"); err != nil {
 						return err
 					}
-					closePage()
+					if err := s.closePage(); err != nil {
+						return err
+					}
 					if strings.Contains(pts[0].String(), s.req.Mode) {
 						logs.Debug("entering domain " + s.req.Mode + "...")
 						if _, err := s.writeBuff("config vdom"); err != nil {
