@@ -165,9 +165,6 @@ func (s *CliConn) init() error {
 		if err != nil {
 			return err
 		}
-		if s.req.Mode == "" {
-			s.req.Mode = s.op.GetStartMode()
-		}
 		// read login prompt
 		_, prompt, err := s.readBuff()
 		if err != nil {
@@ -198,6 +195,14 @@ func (s *CliConn) init() error {
 		} else {
 			if err := s.closePage(); err != nil {
 				return err
+			}
+			if strings.EqualFold(s.req.Vendor, "Paloalto") && strings.EqualFold(s.req.Type, "PAN-OS") {
+				// set format
+				if s.req.Format != "" {
+					if _, err := s.writeBuff("set cli config-output-format " + s.req.Format); err != nil {
+						return err
+					}
+				}
 			}
 			if strings.EqualFold(s.req.Vendor, "fortinet") && strings.EqualFold(s.req.Type, "fortigate") {
 				if pts := s.op.GetPrompts(s.req.Mode); pts != nil {
@@ -243,12 +248,6 @@ func (s *CliConn) closePage() error {
 			return err
 		}
 	} else if strings.EqualFold(s.req.Vendor, "Paloalto") && strings.EqualFold(s.req.Type, "PAN-OS") {
-		// set format
-		if s.req.Format != "" {
-			if _, err := s.writeBuff("set cli config-output-format " + s.req.Format); err != nil {
-				return err
-			}
-		}
 		// set pager
 		if _, err := s.writeBuff("set cli pager off"); err != nil {
 			return err
