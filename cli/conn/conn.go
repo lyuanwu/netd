@@ -217,15 +217,6 @@ func (s *CliConn) init() error {
 					if err := s.closePage(); err != nil {
 						return err
 					}
-					if strings.Contains(pts[0].String(), s.req.Mode) {
-						logs.Debug("entering domain " + s.req.Mode + "...")
-						if _, err := s.writeBuff("config vdom"); err != nil {
-							return err
-						}
-						if _, err := s.writeBuff("edit " + s.req.Mode); err != nil {
-							return err
-						}
-					} // else do nothing
 				}
 			}
 		}
