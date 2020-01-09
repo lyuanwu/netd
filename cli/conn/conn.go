@@ -69,6 +69,9 @@ func Acquire(req *protocol.CliRequest, op cli.Operator) (*CliConn, error) {
 	// try
 	semas[req.Address] <- struct{}{}
 	logs.Info(req.LogPrefix, "sema acquired")
+	if req.Mode == "" {
+		req.Mode = op.GetStartMode()
+	}
 	// if cli conn already created
 	if v, ok := conns[req.Address]; ok {
 		v.req = req
@@ -162,9 +165,6 @@ func (s *CliConn) init() error {
 		if err != nil {
 			return err
 		}
-		if s.req.Mode == "" {
-			s.mode = s.op.GetStartMode()
-		}
 		// read login prompt
 		_, prompt, err := s.readBuff()
 		if err != nil {
@@ -193,32 +193,30 @@ func (s *CliConn) init() error {
 				}
 			}
 		} else {
+			if err := s.closePage(); err != nil {
+				return err
+			}
 			if strings.EqualFold(s.req.Vendor, "Paloalto") && strings.EqualFold(s.req.Type, "PAN-OS") {
 				// set format
 				if s.req.Format != "" {
 					if _, err := s.writeBuff("set cli config-output-format " + s.req.Format); err != nil {
 						return err
 					}
-					if _, _, err := s.readBuff(); err != nil {
-						return err
-					}
-
-				}
-				// set pager
-				if _, err := s.writeBuff("set cli pager off"); err != nil {
-					return err
-				}
-				if _, _, err := s.readBuff(); err != nil {
-					return err
 				}
 			}
-			if strings.EqualFold(s.req.Vendor, "hillstone") && strings.EqualFold(s.req.Type, "SG-6000-VM01") {
-				// set pager
-				if _, err := s.writeBuff("terminal length 0"); err != nil {
-					return err
-				}
-				if _, _, err := s.readBuff(); err != nil {
-					return err
+			if strings.EqualFold(s.req.Vendor, "fortinet") && strings.EqualFold(s.req.Type, "fortigate") {
+				if pts := s.op.GetPrompts(s.req.Mode); pts != nil {
+					//no vdom
+					if !strings.Contains(pts[0].String(), s.req.Mode) {
+						return s.closePage()
+					}
+					logs.Debug("entering domain global...")
+					if _, err := s.writeBuff("config global"); err != nil {
+						return err
+					}
+					if err := s.closePage(); err != nil {
+						return err
+					}
 				}
 			}
 		}
@@ -234,22 +232,27 @@ func (s *CliConn) closePage() error {
 		if _, err := s.writeBuff("terminal pager 0"); err != nil {
 			return err
 		}
-		if _, _, err := s.readBuff(); err != nil {
-			return err
-		}
 		// set page lines
 		if _, err := s.writeBuff("terminal pager lines 0"); err != nil {
 			return err
 		}
-		if _, _, err := s.readBuff(); err != nil {
-			return err
-		}
-		// ==============================
 	} else if strings.EqualFold(s.req.Vendor, "cisco") && strings.EqualFold(s.req.Type, "ios") {
 		if _, err := s.writeBuff("terminal length 0"); err != nil {
 			return err
 		}
-		if _, _, err := s.readBuff(); err != nil {
+	} else if strings.EqualFold(s.req.Vendor, "Paloalto") && strings.EqualFold(s.req.Type, "PAN-OS") {
+		// set pager
+		if _, err := s.writeBuff("set cli pager off"); err != nil {
+			return err
+		}
+	} else if strings.EqualFold(s.req.Vendor, "hillstone") && strings.EqualFold(s.req.Type, "SG-6000-VM01") {
+		// set pager
+		if _, err := s.writeBuff("terminal length 0"); err != nil {
+			return err
+		}
+	} else if strings.EqualFold(s.req.Vendor, "fortinet") && strings.EqualFold(s.req.Type, "fortigate") {
+		// set console
+		if _, err := s.writeBuff("config system console\n\tset output standard\nend"); err != nil {
 			return err
 		}
 	}
