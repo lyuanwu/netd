@@ -193,9 +193,6 @@ func (s *CliConn) init() error {
 				}
 			}
 		} else {
-			if err := s.closePage(); err != nil {
-				return err
-			}
 			if strings.EqualFold(s.req.Vendor, "Paloalto") && strings.EqualFold(s.req.Type, "PAN-OS") {
 				// set format
 				if s.req.Format != "" {
@@ -203,8 +200,11 @@ func (s *CliConn) init() error {
 						return err
 					}
 				}
-			}
-			if strings.EqualFold(s.req.Vendor, "fortinet") && strings.EqualFold(s.req.Type, "fortigate") {
+				// close page
+				if err := s.closePage(); err != nil {
+                                	return err
+                        	}
+			} else if strings.EqualFold(s.req.Vendor, "fortinet") && strings.EqualFold(s.req.Type, "fortigate-VM64-KVM") {
 				if pts := s.op.GetPrompts(s.req.Mode); pts != nil {
 					//no vdom
 					if !strings.Contains(pts[0].String(), s.req.Mode) {
@@ -217,7 +217,22 @@ func (s *CliConn) init() error {
 					if err := s.closePage(); err != nil {
 						return err
 					}
+					if s.req.Mode != "global" {
+						if s.req.Mode != "" {
+							logs.Debug("exiting vdom global ...") 
+							if _, err := s.writeBuff("end"); err != nil {
+								return err
+							}
+							if _, _, err := s.readBuff(); err != nil {
+								return err;
+							}
+						}	
+					}
 				}
+			} else {
+				if err := s.closePage(); err != nil {
+                                	return err
+                        	}		
 			}
 		}
 	}
@@ -250,7 +265,7 @@ func (s *CliConn) closePage() error {
 		if _, err := s.writeBuff("terminal length 0"); err != nil {
 			return err
 		}
-	} else if strings.EqualFold(s.req.Vendor, "fortinet") && strings.EqualFold(s.req.Type, "fortigate") {
+	} else if strings.EqualFold(s.req.Vendor, "fortinet") && strings.EqualFold(s.req.Type, "fortigate-VM64-KVM") {
 		// set console
 		if _, err := s.writeBuff("config system console\n\tset output standard\nend"); err != nil {
 			return err
