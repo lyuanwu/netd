@@ -217,16 +217,12 @@ func (s *CliConn) init() error {
 					if err := s.closePage(); err != nil {
 						return err
 					}
-					if s.req.Mode != "global" {
-						if s.req.Mode != "" {
-							logs.Debug("exiting vdom global ...") 
-							if _, err := s.writeBuff("end"); err != nil {
-								return err
-							}
-							if _, _, err := s.readBuff(); err != nil {
-								return err;
-							}
-						}	
+					logs.Debug("exiting vdom global ...") 
+					if _, err := s.writeBuff("end"); err != nil {
+						return err
+					}
+					if _, _, err := s.readBuff(); err != nil {
+						return err;
 					}
 				}
 			} else {
