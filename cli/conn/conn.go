@@ -210,14 +210,14 @@ func (s *CliConn) init() error {
 					if !strings.Contains(pts[0].String(), s.req.Mode) {
 						return s.closePage()
 					}
-					logs.Debug("entering domain global...")
+					logs.Debug(s.req.LogPrefix, "entering domain global...")
 					if _, err := s.writeBuff("config global"); err != nil {
 						return err
 					}
 					if err := s.closePage(); err != nil {
 						return err
 					}
-					logs.Debug("exiting vdom global ...") 
+					logs.Debug(s.req.LogPrefix, "exiting vdom global ...") 
 					if _, err := s.writeBuff("end"); err != nil {
 						return err
 					}
